@@ -86,7 +86,7 @@ local function creatureSayCallback(npc, creature, type, message)
 
 		------------Task Part-------------
 	elseif MsgContains(message, "task") then
-		if player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.LugriNecromancers) < 0 and player:getLevel() >= 60 then
+		if player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.LugriNecromancers) < 0 and player:getLevel() >= 30 then
 			npcHandler:say({
 				"What? Who are you to imply I need help from a worm like you? ...",
 				"I don't need help. But if you desperately wish to do something to earn the favour of Zathroth, feel free. Don't expect any reward though. ...",

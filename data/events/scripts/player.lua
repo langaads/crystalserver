@@ -488,6 +488,9 @@ function Player:onGainExperience(target, exp, rawExp)
 		return exp
 	end
 
+	local rebirthLevelHistory = self:kv():scoped("rebirth"):get("level-history") or 0
+	local rebirthBonusExp = (rebirthLevelHistory > 0 and self:getLevel() < rebirthLevelHistory) and 100 or 0
+
 	-- Soul regeneration
 	local vocation = self:getVocation()
 	if self:getSoul() < vocation:getMaxSoul() and exp >= self:getLevel() then
@@ -561,7 +564,7 @@ function Player:onGainExperience(target, exp, rawExp)
 	local baseRateExp = self:getFinalBaseRateExperience()
 
 	-- Return final experience value
-	return (exp * (1 + xpBoostPercent / 100 + lowLevelBonusExp / 100)) * staminaBonusXp * baseRateExp
+	return (exp * (1 + xpBoostPercent / 100 + lowLevelBonusExp / 100 + rebirthBonusExp / 100)) * staminaBonusXp * baseRateExp
 end
 
 function Player:onLoseExperience(exp)

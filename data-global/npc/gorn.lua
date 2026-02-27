@@ -136,6 +136,7 @@ npcConfig.shop = {
 	{ itemName = "inkwell", clientId = 3509, buy = 10, sell = 8 },
 	{ itemName = "jug", clientId = 7244, buy = 10 },
 	{ itemName = "machete", clientId = 3308, buy = 35, sell = 6 },
+	{ itemName = "magical torch", clientId = 9042, buy = 30000 },
 	{ itemName = "mug", clientId = 2880, buy = 4 },
 	{ itemName = "net", clientId = 31489, buy = 50 },
 	{ itemName = "orange backpack", clientId = 9602, buy = 20 },

@@ -562,17 +562,17 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:setTopic(playerId, 10)
 			return true
 		end
-		if player:getLevel() < 50 then
+		if player:getLevel() < 30 then
 			if player:getStorageValue(POINTSSTORAGE) >= 40 then
 				npcHandler:say({
-					"You may not advance in your rank anymore until you've levelled up. But you can accept tasks without getting Paw & Fur points, just for an experience reward and the possibility to fight a boss from the range lower than level 50. ...",
+					"You may not advance in your rank anymore until you've levelled up. But you can accept tasks without getting Paw & Fur points, just for an experience reward and the possibility to fight a boss from the range lower than level 30. ...",
 					"You can try {crocodiles}, {badgers}, {tarantulas}, {carniphilas}, {stone golems}, {mammoths}, {gnarlhounds}, ...",
 					"as well as {terramites}, {apes}, {thornback tortoises} and {gargoyles}.",
 				}, npc, creature)
 			else
 				npcHandler:say("Alright, what would you like to hunt? {Crocodiles}, {badgers}, {tarantulas}, {carniphilas}, {stone golems}, {mammoths}, {gnarlhounds}, {terramites}, {apes}, {thornback tortoises} or {gargoyles}.", npc, creature)
 			end
-		elseif player:getLevel() >= 50 and player:getLevel() < 80 then
+		elseif player:getLevel() >= 30 and player:getLevel() < 50 then
 			if player:getStorageValue(POINTSSTORAGE) >= 70 then
 				npcHandler:say({
 					"You may not advance in your rank anymore until you've levelled up. But you can accept tasks without getting Paw & Fur points, just for an experience reward and the possibility to fight a boss from the range lower than level 80. ...",
@@ -585,10 +585,10 @@ local function creatureSayCallback(npc, creature, type, message)
 					"or {wailing widows}, {killer caimans}, {bonebeasts}, {crystal spiders} or {mutated tigers}.",
 				}, npc, creature)
 			end
-		elseif player:getLevel() >= 80 and player:getLevel() < 130 then
+		elseif player:getLevel() >= 50 and player:getLevel() < 80 then
 			if player:getStorageValue(POINTSSTORAGE) >= 100 then
 				npcHandler:say({
-					"You may not advance in your rank anymore until you've levelled up. But you can accept tasks without getting Paw & Fur points, just for an experience reward and the possibility to fight a boss from the range lower than level 130. ...",
+					"You may not advance in your rank anymore until you've levelled up. But you can accept tasks without getting Paw & Fur points, just for an experience reward and the possibility to fight a boss from the range lower than level 80. ...",
 					"You can try {underwater quara}, {giant spiders}, {werewolves}, {nightmares}, {hellspawns}, {high class lizards}, {stampors}, ...",
 					"as well as {brimstone bugs} and {mutated bats}.",
 				}, npc, creature)
@@ -598,7 +598,7 @@ local function creatureSayCallback(npc, creature, type, message)
 					"as well as {high class lizards}, {stampors}, {brimstone bugs}, {mutated bats}.",
 				}, npc, creature)
 			end
-		elseif player:getLevel() >= 130 and player:getStorageValue(POINTSSTORAGE) < 100 then
+		elseif player:getLevel() >= 80 and player:getStorageValue(POINTSSTORAGE) < 100 then
 			npcHandler:say({
 				"Alright, what would you like to hunt? You can try {hydras}, {serpent spawns}, {medusae}, {behemoths}, {sea serpents}, ...",
 				"as well as {hellhounds}, {ghastly dragons}, {undead dragons}, {draken} and {destroyers}.",
@@ -800,11 +800,11 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say("You have " .. player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.BossPoints) .. " boss points.", npc, creature)
 		end
 	elseif table.contains({ "snapper", "hide", "deathbine", "bloodtusk" }, message:lower()) and npcHandler:getTopic(playerId) >= 4 and npcHandler:getTopic(playerId) <= 7 then
-		checkX(npc, player, 50, message)
+		checkX(npc, player, 30, message)
 	elseif table.contains({ "shardhead", "fleshcrawler", "ribstride", "bloodweb", "esmeralda" }, message:lower()) and npcHandler:getTopic(playerId) >= 5 and npcHandler:getTopic(playerId) <= 7 then
-		checkX(npc, player, 80, message)
+		checkX(npc, player, 50, message)
 	elseif table.contains({ "thul", "flameborn", "sulphur scuttler", "old widow", "hemming", "tormentor", "fazzrah", "tromphonyte", "bruise payne" }, message:lower()) and npcHandler:getTopic(playerId) >= 6 and npcHandler:getTopic(playerId) <= 7 then
-		checkX(npc, player, 130, message)
+		checkX(npc, player, 80, message)
 	elseif table.contains({ "many", "noxious spawn", "stonecracker", "gorgo", "kerberos", "ethershreck", "zanakeph", "paiz the pauperizer", "bretzecutioner", "leviathan" }, message:lower()) and npcHandler:getTopic(playerId) == 7 then
 		for w = 1, #tasks.GrizzlyAdams do
 			if tasks.GrizzlyAdams[w].bossName then
