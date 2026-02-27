@@ -114,9 +114,9 @@ function Rebirth.execute(player, skillName)
 	-- Remove toda experiência (isso mantém o level 1)
 	player:removeExperience(currentExp, false)
 	player:setLevel(1)
-    -- enche stamina e offline training
-    player:setStamina(2520)
-    player:addOfflineTrainingTime(43200) -- 12 horas de offline training
+	-- enche stamina e offline training
+	player:setStamina(2520)
+	player:addOfflineTrainingTime(43200) -- 12 horas de offline training
 
 	-- Adiciona skill tries
 	if skill == SKILL_MAGLEVEL then
@@ -136,17 +136,7 @@ function Rebirth.execute(player, skillName)
 
 	-- Mensagem de sucesso
 	local skillNameDisplay = skillName:gsub("^%l", string.upper)
-	player:sendTextMessage(
-		MESSAGE_EVENT_ADVANCE,
-		string.format(
-			"Rebirth realizado com sucesso! Você recebeu %d skill tries em %s, %d tibia coins e %d promotion points para a Destiny Wheel. Bônus de EXP de 100%% ativo enquanto estiver abaixo do seu level memory (%d).",
-			skillTries,
-			skillNameDisplay,
-			coinsToGive,
-			promotionPointsToGive,
-			newLevelHistory
-		)
-	)
+	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, string.format("Rebirth realizado com sucesso! Você recebeu %d skill tries em %s, %d tibia coins e %d promotion points para a Destiny Wheel. Bônus de EXP de 100%% ativo enquanto estiver abaixo do seu level memory (%d).", skillTries, skillNameDisplay, coinsToGive, promotionPointsToGive, newLevelHistory))
 
 	return true, ""
 end

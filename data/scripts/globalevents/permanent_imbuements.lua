@@ -16,7 +16,6 @@ local IMBUABLE_EQUIPMENT_SLOTS = {
 }
 
 local function refreshImbuementDuration(item)
-
 	if not item then
 		return
 	end
