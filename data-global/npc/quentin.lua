@@ -148,10 +148,7 @@ keywordHandler:addKeyword({ "heal" }, StdModule.say, { npcHandler = npcHandler, 
 local function createRebirthSkillKeyword(skillName, displayName)
 	keywordHandler:addKeyword({ skillName }, StdModule.say, {
 		npcHandler = npcHandler,
-		text = string.format(
-			"You have chosen to master the %s skill. This is irreversible! Are you absolutely certain you want to proceed?",
-			displayName or skillName
-		),
+		text = string.format("You have chosen to master the %s skill. This is irreversible! Are you absolutely certain you want to proceed?", displayName or skillName),
 	}, function(player)
 		return npcHandler:getTopic(player:getId()) == 100
 	end, function(player)
@@ -180,7 +177,7 @@ keywordHandler:addKeyword({ "yes" }, StdModule.say, {
 end, function(player)
 	local skillId = player:getStorageValue(90000)
 	local skillName = ""
-	
+
 	-- Encontra o nome da skill pelo ID
 	for name, id in pairs(Rebirth.Skills) do
 		if id == skillId then
@@ -188,14 +185,14 @@ end, function(player)
 			break
 		end
 	end
-	
+
 	if skillName ~= "" then
 		local success, errorMsg = Rebirth.execute(player, skillName)
 		if not success then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Rebirth failed: " .. errorMsg)
 		end
 	end
-	
+
 	player:setStorageValue(90000, -1) -- Limpa o storage temporário
 	npcHandler:setTopic(player:getId(), 0)
 end)
@@ -225,17 +222,23 @@ local rebirthKeyword = keywordHandler:addKeyword({ "rebirth" }, StdModule.say, {
 	},
 })
 
-rebirthKeyword:addChildKeyword({ "yes" }, StdModule.say, {
-	npcHandler = npcHandler,
-	text = {
-		"Excellent! Now, which skill would you like to master? Choose wisely: ...",
-		"Say {sword}, {club}, {axe}, {distance}, {shielding}, {fishing}, or {magiclevel}.",
+rebirthKeyword:addChildKeyword(
+	{ "yes" },
+	StdModule.say,
+	{
+		npcHandler = npcHandler,
+		text = {
+			"Excellent! Now, which skill would you like to master? Choose wisely: ...",
+			"Say {sword}, {club}, {axe}, {distance}, {shielding}, {fishing}, or {magiclevel}.",
+		},
+		reset = false,
+		ungreet = false,
 	},
-	reset = false,
-	ungreet = false,
-}, nil, function(player)
-	npcHandler:setTopic(player:getId(), 100) -- Topic 100 = aguardando escolha de skill
-end)
+	nil,
+	function(player)
+		npcHandler:setTopic(player:getId(), 100) -- Topic 100 = aguardando escolha de skill
+	end
+)
 
 rebirthKeyword:addChildKeyword({ "no" }, StdModule.say, {
 	npcHandler = npcHandler,
