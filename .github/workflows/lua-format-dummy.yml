@@ -2,9 +2,9 @@
 name: Lua-format (dumy)
 
 on:
-  pull_request:
-    paths-ignore:
-      - "data*/**"
+  # pull_request:
+  #   paths-ignore:
+  #     - "data*/**"
 
 jobs:
   lua-formatter:

@@ -1,13 +1,13 @@
 ---
 name: Lua-format
 on:
-  pull_request:
-    paths:
-      - "data*/**"
-  merge_group:
-  push:
-    paths:
-      - "data*/**"
+  # pull_request:
+  #   paths:
+  #     - "data*/**"
+  # merge_group:
+  # push:
+  #   paths:
+  #     - "data*/**"
 jobs:
   lua-formatter:
     runs-on: ubuntu-latest
