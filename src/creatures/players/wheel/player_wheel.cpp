@@ -354,6 +354,7 @@ namespace {
 } // namespace
 
 PlayerWheel::PlayerWheel(Player &initPlayer) :
+	m_minLevelToOpen(static_cast<uint16_t>(std::max(1, g_configManager().getNumber(WHEEL_MIN_LEVEL)))),
 	m_pointsPerLevel(g_configManager().getNumber(WHEEL_POINTS_PER_LEVEL)), m_player(initPlayer) {
 }
 
@@ -1892,11 +1893,11 @@ bool PlayerWheel::saveDBPlayerSlotPointsOnLogout() const {
 }
 
 uint16_t PlayerWheel::getExtraPoints() const {
-	if (m_player.getLevel() < 51) {
+	if (m_player.getLevel() < m_minLevelToOpen) {
 		return 0;
 	}
 
-	uint16_t totalBonus = 0;
+	int32_t totalBonus = 0;
 	for (const auto &[itemId, name, extraPoints] : m_unlockedScrolls) {
 		if (itemId == 0) {
 			continue;
@@ -1910,12 +1911,50 @@ uint16_t PlayerWheel::getExtraPoints() const {
 		totalBonus += 10;
 	}
 
-	return totalBonus;
+	if (const auto promotionPointsKV = m_player.kv()->scoped("wheel-of-destiny")->get("extra-points"); promotionPointsKV.has_value()) {
+		totalBonus += std::max<int32_t>(0, promotionPointsKV->get<IntType>());
+	}
+
+	return static_cast<uint16_t>(std::min<int32_t>(totalBonus, 0xFFFF));
+}
+
+void PlayerWheel::addPromotionPoints(uint16_t points) {
+	if (points == 0) {
+		return;
+	}
+
+	const auto wheelKV = m_player.kv()->scoped("wheel-of-destiny");
+	int32_t currentPromotionPoints = 0;
+	if (const auto promotionPointsKV = wheelKV->get("extra-points"); promotionPointsKV.has_value()) {
+		currentPromotionPoints = std::max<int32_t>(0, promotionPointsKV->get<IntType>());
+	}
+
+	wheelKV->set("extra-points", currentPromotionPoints + points);
+}
+
+bool PlayerWheel::removePromotionPoints(uint16_t points) {
+	if (points == 0) {
+		return true;
+	}
+
+	const auto wheelKV = m_player.kv()->scoped("wheel-of-destiny");
+	int32_t currentPromotionPoints = 0;
+	if (const auto promotionPointsKV = wheelKV->get("extra-points"); promotionPointsKV.has_value()) {
+		currentPromotionPoints = std::max<int32_t>(0, promotionPointsKV->get<IntType>());
+	}
+
+	if (currentPromotionPoints < points) {
+		return false;
+	}
+
+	wheelKV->set("extra-points", currentPromotionPoints - points);
+	return true;
 }
 
 uint16_t PlayerWheel::getWheelPoints(bool includeExtraPoints /* = true*/) const {
 	const uint32_t level = m_player.getLevel();
-	auto totalPoints = std::max(0u, (level - m_minLevelToStartCountPoints)) * m_pointsPerLevel;
+	const uint32_t minLevelToStartCountPoints = std::max<uint32_t>(1, m_minLevelToOpen) - 1;
+	auto totalPoints = std::max(0u, (level - minLevelToStartCountPoints)) * m_pointsPerLevel;
 
 	if (includeExtraPoints) {
 		const auto extraPoints = getExtraPoints();
@@ -1960,8 +1999,7 @@ bool PlayerWheel::canOpenWheel() const {
 		return false;
 	}
 
-	// Level check, This is hardcoded on the client, cannot be changed
-	if (m_player.getLevel() <= 50) {
+	if (m_player.getLevel() < m_minLevelToOpen) {
 		return false;
 	}
 

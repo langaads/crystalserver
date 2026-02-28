@@ -321,6 +321,8 @@ class PlayerFunctions {
 	static int luaPlayerGetWheelSpellAdditionalTarget(lua_State* L);
 	static int luaPlayerGetWheelSpellAdditionalDuration(lua_State* L);
 	static int luaPlayerWheelUnlockScroll(lua_State* L);
+	static int luaPlayerAddPromotionPoints(lua_State* L);
+	static int luaPlayerRemovePromotionPoints(lua_State* L);
 
 	static int luaPlayerOpenForge(lua_State* L);
 	static int luaPlayerCloseForge(lua_State* L);

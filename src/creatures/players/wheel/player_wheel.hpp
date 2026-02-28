@@ -163,6 +163,8 @@ public:
 	 */
 	uint16_t getWheelPoints(bool includeExtraPoints = true) const;
 	uint16_t getExtraPoints() const;
+	void addPromotionPoints(uint16_t points);
+	bool removePromotionPoints(uint16_t points);
 	uint8_t getMaxPointsPerSlot(WheelSlots_t slot) const;
 	uint16_t getUnusedPoints() const;
 
@@ -234,7 +236,7 @@ private:
 	void resetPlayerData();
 
 	// Members variables
-	const uint16_t m_minLevelToStartCountPoints = 50;
+	uint16_t m_minLevelToOpen = 51;
 	uint16_t m_pointsPerLevel = 1;
 
 public:

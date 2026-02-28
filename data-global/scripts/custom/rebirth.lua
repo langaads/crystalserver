@@ -8,14 +8,6 @@ Rebirth = {
 		coinsPerLevel = 1, -- 1 tibia coin por level
 		pointsPerLevelAboveHistory = 1, -- 1 ponto por level acima do histórico
 		pointsPerLevelBelowHistory = 1, -- pontos por level até o histórico (arredondado para baixo)
-		kvScopes = {
-			rebirth = "rebirth",
-			wheel = "wheel-of-destiny",
-		},
-		kvKeys = {
-			levelHistory = "level-history",
-			rebirthPromotionPoints = "rebirth-points",
-		},
 	},
 
 	-- Skills disponíveis para rebirth
@@ -31,8 +23,8 @@ Rebirth = {
 }
 
 function Rebirth.getLevelHistory(player)
-	local rebirthKV = player:kv():scoped(Rebirth.Config.kvScopes.rebirth)
-	return rebirthKV:get(Rebirth.Config.kvKeys.levelHistory) or 0
+	local rebirthKV = player:kv():scoped("rebirth")
+	return rebirthKV:get("level-history") or 0
 end
 
 function Rebirth.calculatePromotionPoints(currentLevel, previousHistory)
@@ -101,14 +93,12 @@ function Rebirth.execute(player, skillName)
 
 	-- Atualiza histórico de level (maior level já alcançado antes do rebirth)
 	local newLevelHistory = math.max(previousLevelHistory, currentLevel)
-	local rebirthKV = player:kv():scoped(Rebirth.Config.kvScopes.rebirth)
-	rebirthKV:set(Rebirth.Config.kvKeys.levelHistory, newLevelHistory)
+	local rebirthKV = player:kv():scoped("rebirth")
+	rebirthKV:set("level-history", newLevelHistory)
 
 	-- Acumula promotion points do rebirth na KV da wheel
 	if promotionPointsToGive > 0 then
-		local wheelKV = player:kv():scoped(Rebirth.Config.kvScopes.wheel)
-		local currentPromotionPoints = wheelKV:get(Rebirth.Config.kvKeys.rebirthPromotionPoints) or 0
-		wheelKV:set(Rebirth.Config.kvKeys.rebirthPromotionPoints, currentPromotionPoints + promotionPointsToGive)
+		player:addPromotionPoints(promotionPointsToGive)
 	end
 
 	-- Remove toda experiência (isso mantém o level 1)
