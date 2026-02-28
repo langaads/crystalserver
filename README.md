@@ -64,6 +64,8 @@ https://github.com/user-attachments/assets/58089db8-c86b-43ed-9601-556af2405a80
 ### Compiling from Source (Guided Scripts)
 If you prefer to compile the server yourself, you can use one of our guided installer scripts. You only need to download the file that matches your operating system (`crystal_windows_installer.ps1` for Windows, or `linux_installer.sh` for Linux).
 
+For a manual and CI-aligned Windows build flow (CMake presets + vcpkg manifest), see [docs/BUILD_WINDOWS.md](docs/BUILD_WINDOWS.md).
+
 #### Windows (PowerShell)
 A guided PowerShell script is available to automate the entire compilation process, including the installation of Git, CMake, and Visual Studio.
 

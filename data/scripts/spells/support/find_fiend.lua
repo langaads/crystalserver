@@ -76,29 +76,31 @@ function spell.onCastSpell(creature, variant)
 		message = message .. " " .. directions[direction]
 	end
 
-	local monsterType = target:getType()
-	local stringLevel = "Unknown"
-	if monsterType and creature:isMonsterBestiaryUnlocked(monsterType:raceId()) then
-		local bestiaryKillsAmount = monsterType:BestiarytoKill()
-		if bestiaryKillsAmount >= 5 and bestiaryKillsAmount <= 25 then
-			stringLevel = "Harmless"
-		elseif bestiaryKillsAmount <= 250 then
-			stringLevel = "Trivial"
-		elseif bestiaryKillsAmount <= 500 then
-			stringLevel = "Easy"
-		elseif bestiaryKillsAmount <= 1000 then
-			stringLevel = "Medium"
-		elseif bestiaryKillsAmount <= 2500 then
-			stringLevel = "Hard"
-		elseif bestiaryKillsAmount <= 5000 then
-			stringLevel = "Challenging"
-		end
-	end
+	-- local monsterType = target:getType()
+	-- local stringLevel = "Unknown"
+	-- if monsterType and creature:isMonsterBestiaryUnlocked(monsterType:raceId()) then
+	-- 	local bestiaryKillsAmount = monsterType:BestiarytoKill()
+	-- 	if bestiaryKillsAmount >= 5 and bestiaryKillsAmount <= 25 then
+	-- 		stringLevel = "Harmless"
+	-- 	elseif bestiaryKillsAmount <= 250 then
+	-- 		stringLevel = "Trivial"
+	-- 	elseif bestiaryKillsAmount <= 500 then
+	-- 		stringLevel = "Easy"
+	-- 	elseif bestiaryKillsAmount <= 1000 then
+	-- 		stringLevel = "Medium"
+	-- 	elseif bestiaryKillsAmount <= 2500 then
+	-- 		stringLevel = "Hard"
+	-- 	elseif bestiaryKillsAmount <= 5000 then
+	-- 		stringLevel = "Challenging"
+	-- 	end
+	-- end
 
-	message = string.format("The monster " .. message .. '. Be prepared to find a creature of difficulty level "' .. stringLevel .. '".')
+	local monsterName = target:getName() or "Unknown"
+	message = string.format('The monster "%s" %s.', monsterName, message)
+	-- message = string.format('The monster "%s" %s. Be prepared to find a creature of difficulty level "%s".', monsterName, message, stringLevel)
 	local timeLeft = math.floor((target:getTimeToChangeFiendish() - os.time()) / 60)
 	if timeLeft < 15 then
-		message = string.format(message .. " " .. ForgeMonster:getTimeLeftToChangeMonster(target))
+		message = message .. " " .. ForgeMonster:getTimeLeftToChangeMonster(target)
 	end
 
 	creature:sendTextMessage(MESSAGE_LOOK, message)

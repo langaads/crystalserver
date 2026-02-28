@@ -343,6 +343,8 @@ void PlayerFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Player", "getWheelSpellAdditionalTarget", PlayerFunctions::luaPlayerGetWheelSpellAdditionalTarget);
 	Lua::registerMethod(L, "Player", "getWheelSpellAdditionalDuration", PlayerFunctions::luaPlayerGetWheelSpellAdditionalDuration);
 	Lua::registerMethod(L, "Player", "wheelUnlockScroll", PlayerFunctions::luaPlayerWheelUnlockScroll);
+	Lua::registerMethod(L, "Player", "addPromotionPoints", PlayerFunctions::luaPlayerAddPromotionPoints);
+	Lua::registerMethod(L, "Player", "removePromotionPoints", PlayerFunctions::luaPlayerRemovePromotionPoints);
 
 	// Forge Functions
 	Lua::registerMethod(L, "Player", "openForge", PlayerFunctions::luaPlayerOpenForge);
@@ -4774,6 +4776,35 @@ int PlayerFunctions::luaPlayerWheelUnlockScroll(lua_State* L) {
 	}
 
 	lua_pushboolean(L, player->wheel()->unlockScroll(scrollName));
+	return 1;
+}
+
+int PlayerFunctions::luaPlayerAddPromotionPoints(lua_State* L) {
+	// player:addPromotionPoints(points)
+	const auto &player = Lua::getUserdataShared<Player>(L, 1);
+	if (!player) {
+		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_PLAYER_NOT_FOUND));
+		Lua::pushBoolean(L, false);
+		return 0;
+	}
+
+	const auto points = Lua::getNumber<uint16_t>(L, 2);
+	player->wheel()->addPromotionPoints(points);
+	Lua::pushBoolean(L, true);
+	return 1;
+}
+
+int PlayerFunctions::luaPlayerRemovePromotionPoints(lua_State* L) {
+	// player:removePromotionPoints(points)
+	const auto &player = Lua::getUserdataShared<Player>(L, 1);
+	if (!player) {
+		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_PLAYER_NOT_FOUND));
+		Lua::pushBoolean(L, false);
+		return 0;
+	}
+
+	const auto points = Lua::getNumber<uint16_t>(L, 2);
+	Lua::pushBoolean(L, player->wheel()->removePromotionPoints(points));
 	return 1;
 }
 

@@ -1,9 +1,9 @@
 ---
 name: Clang-format (dummy)
 on:
-  pull_request:
-    paths-ignore:
-      - "src/**"
+  # pull_request:
+  #   paths-ignore:
+  #     - "src/**"
 
 jobs:
   build:

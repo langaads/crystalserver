@@ -370,6 +370,7 @@ bool ConfigManager::load() {
 	loadIntConfig(L, WHEEL_ATELIER_ROTATE_GREATER_COST, "wheelAtelierRotateGreaterCost", 500000);
 	loadIntConfig(L, WHEEL_ATELIER_ROTATE_LESSER_COST, "wheelAtelierRotateLesserCost", 125000);
 	loadIntConfig(L, WHEEL_ATELIER_ROTATE_REGULAR_COST, "wheelAtelierRotateRegularCost", 250000);
+	loadIntConfig(L, WHEEL_MIN_LEVEL, "wheelMinLevel", 51);
 	loadIntConfig(L, WHEEL_POINTS_PER_LEVEL, "wheelPointsPerLevel", 1);
 	loadIntConfig(L, WHITE_SKULL_TIME, "whiteSkullTime", 15 * 60 * 1000);
 	loadIntConfig(L, AUGMENT_INCREASED_DAMAGE_PERCENT, "augmentIncreasedDamagePercent", 5);

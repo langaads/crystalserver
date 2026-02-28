@@ -76,7 +76,8 @@ local DailyRewardItems = {
 
 DailyReward = {
 	testMode = false,
-	serverTimeThreshold = (24 * 60 * 60), -- Counting down 24hours from last server save
+	serverTimeThreshold = (20 * 60 * 60), -- Counting down 20hours from last server save
+	streakToleranceDays = 7,
 
 	storages = {
 		-- Player
@@ -313,21 +314,25 @@ DailyReward.init = function(playerId)
 	local timeMath = os.time() - player:getNextRewardTime()
 	if player:getNextRewardTime() > 0 and os.time() >= player:getNextRewardTime() then
 		if player:getStorageValue(DailyReward.storages.notifyReset) ~= player:getNextRewardTime() then
-			player:setStorageValue(DailyReward.storages.notifyReset, player:getNextRewardTime())
 			timeMath = math.ceil(timeMath / DailyReward.serverTimeThreshold)
 			if timeMath < 0 then
 				timeMath = 0
 			end
-			if player:getJokerTokens() >= timeMath and timeMath > 0 then
-				player:setJokerTokens(player:getJokerTokens() - timeMath)
-				player:sendTextMessage(MESSAGE_LOGIN, "You lost " .. timeMath .. " joker tokens to prevent loosing your streak.")
-			else
-				player:setStreakLevel(0)
-				if player:getLastLoginSaved() > 0 then -- message wont appear at first character login
-					if player:getJokerTokens() > 0 then
-						player:setJokerTokens(-(player:getJokerTokens()))
+
+			timeMath = math.max(0, timeMath - DailyReward.streakToleranceDays)
+			if timeMath > 0 then
+				player:setStorageValue(DailyReward.storages.notifyReset, player:getNextRewardTime())
+				if player:getJokerTokens() >= timeMath then
+					player:setJokerTokens(player:getJokerTokens() - timeMath)
+					player:sendTextMessage(MESSAGE_LOGIN, "You lost " .. timeMath .. " joker tokens to prevent loosing your streak.")
+				else
+					player:setStreakLevel(0)
+					if player:getLastLoginSaved() > 0 then -- message wont appear at first character login
+						if player:getJokerTokens() > 0 then
+							player:setJokerTokens(-(player:getJokerTokens()))
+						end
+						player:sendTextMessage(MESSAGE_LOGIN, "You just lost your daily reward streak.")
 					end
-					player:sendTextMessage(MESSAGE_LOGIN, "You just lost your daily reward streak.")
 				end
 			end
 		end
