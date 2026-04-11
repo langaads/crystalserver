@@ -332,52 +332,53 @@ Game::Game() {
 		Title(51, BESTIARY, static_cast<uint16_t>(BESTY_RACE_REPTILE), "Snake Charmer", "", "Unlocked all Reptile Bestiary entries."),
 		Title(52, BESTIARY, static_cast<uint16_t>(BESTY_RACE_GIANT), "Tumbler", "", "Unlocked all Giant Bestiary entries."),
 		Title(53, BESTIARY, static_cast<uint16_t>(BESTY_RACE_PLANT), "Weedkiller", "", "Unlocked all Plant Bestiary entries."),
-		Title(54, BESTIARY, 0, "Executioner", "", "Unlocked all Bestiary entries."),
+		Title(54, BESTIARY, static_cast<uint16_t>(BESTY_RACE_INKBORN), "Ink Eraser", "", "Unlocked all Inkborn Bestiary entries."),
+		Title(55, BESTIARY, 0, "Executioner", "", "Unlocked all Bestiary entries."),
 
-		Title(55, BOSSTIARY, static_cast<uint16_t>(BosstiaryRarity_t::RARITY_NEMESIS), "Boss Annihilator", "", "Unlocked all Nemesis bosses.", 0, false),
-		Title(56, BOSSTIARY, static_cast<uint16_t>(BosstiaryRarity_t::RARITY_ARCHFOE), "Boss Destroyer", "", "Unlocked 10 or more Archfoe bosses.", 10, true),
-		Title(57, BOSSTIARY, static_cast<uint16_t>(BosstiaryRarity_t::RARITY_NEMESIS), "Boss Devastator", "", "Unlocked 10 or more Nemesis bosses.", 10, true),
-		Title(58, BOSSTIARY, static_cast<uint16_t>(BosstiaryRarity_t::RARITY_ARCHFOE), "Boss Eraser", "", "Unlocked all Archfoe bosses.", 0, false),
-		Title(59, BOSSTIARY, 0, "Boss Executioner", "", "Unlocked all bosses.", 0, false),
-		Title(60, BOSSTIARY, static_cast<uint16_t>(BosstiaryRarity_t::RARITY_BANE), "Boss Hunter", "", "Unlocked 10 or more Bane bosses.", 10, true),
-		Title(61, BOSSTIARY, static_cast<uint16_t>(BosstiaryRarity_t::RARITY_NEMESIS), "Boss Obliterator", "", "Unlocked 40 or more Nemesis bosses.", 40, true),
-		Title(62, BOSSTIARY, static_cast<uint16_t>(BosstiaryRarity_t::RARITY_BANE), "Boss Slayer", "", "Unlocked all Bane bosses.", 0, false),
-		Title(63, BOSSTIARY, static_cast<uint16_t>(BosstiaryRarity_t::RARITY_ARCHFOE), "Boss Smiter", "", "Unlocked 40 or more Archfoe bosses.", 40, true),
-		Title(64, BOSSTIARY, static_cast<uint16_t>(BosstiaryRarity_t::RARITY_BANE), "Boss Veteran", "", "Unlocked 40 or more Bane bosses.", 40, true),
+		Title(56, BOSSTIARY, static_cast<uint16_t>(BosstiaryRarity_t::RARITY_NEMESIS), "Boss Annihilator", "", "Unlocked all Nemesis bosses.", 0, false),
+		Title(57, BOSSTIARY, static_cast<uint16_t>(BosstiaryRarity_t::RARITY_ARCHFOE), "Boss Destroyer", "", "Unlocked 10 or more Archfoe bosses.", 10, true),
+		Title(58, BOSSTIARY, static_cast<uint16_t>(BosstiaryRarity_t::RARITY_NEMESIS), "Boss Devastator", "", "Unlocked 10 or more Nemesis bosses.", 10, true),
+		Title(59, BOSSTIARY, static_cast<uint16_t>(BosstiaryRarity_t::RARITY_ARCHFOE), "Boss Eraser", "", "Unlocked all Archfoe bosses.", 0, false),
+		Title(60, BOSSTIARY, 0, "Boss Executioner", "", "Unlocked all bosses.", 0, false),
+		Title(61, BOSSTIARY, static_cast<uint16_t>(BosstiaryRarity_t::RARITY_BANE), "Boss Hunter", "", "Unlocked 10 or more Bane bosses.", 10, true),
+		Title(62, BOSSTIARY, static_cast<uint16_t>(BosstiaryRarity_t::RARITY_NEMESIS), "Boss Obliterator", "", "Unlocked 40 or more Nemesis bosses.", 40, true),
+		Title(63, BOSSTIARY, static_cast<uint16_t>(BosstiaryRarity_t::RARITY_BANE), "Boss Slayer", "", "Unlocked all Bane bosses.", 0, false),
+		Title(64, BOSSTIARY, static_cast<uint16_t>(BosstiaryRarity_t::RARITY_ARCHFOE), "Boss Smiter", "", "Unlocked 40 or more Archfoe bosses.", 40, true),
+		Title(65, BOSSTIARY, static_cast<uint16_t>(BosstiaryRarity_t::RARITY_BANE), "Boss Veteran", "", "Unlocked 40 or more Bane bosses.", 40, true),
 
-		Title(65, DAILY_REWARD, "Creature of Habit (Grade 1)", "Reward Streak of at least 7 days of consecutive logins.", 7, true),
-		Title(66, DAILY_REWARD, "Creature of Habit (Grade 2)", "Reward Streak of at least 30 days of consecutive logins.", 30, true),
-		Title(67, DAILY_REWARD, "Creature of Habit (Grade 3)", "Reward Streak of at least 90 days of consecutive logins.", 90, true),
-		Title(68, DAILY_REWARD, "Creature of Habit (Grade 4)", "Reward Streak of at least 180 days of consecutive logins.", 180, true),
-		Title(69, DAILY_REWARD, "Creature of Habit (Grade 5)", "Reward Streak of at least 365 days of consecutive logins.", 365, true),
+		Title(66, DAILY_REWARD, "Creature of Habit (Grade 1)", "Reward Streak of at least 7 days of consecutive logins.", 7, true),
+		Title(67, DAILY_REWARD, "Creature of Habit (Grade 2)", "Reward Streak of at least 30 days of consecutive logins.", 30, true),
+		Title(68, DAILY_REWARD, "Creature of Habit (Grade 3)", "Reward Streak of at least 90 days of consecutive logins.", 90, true),
+		Title(69, DAILY_REWARD, "Creature of Habit (Grade 4)", "Reward Streak of at least 180 days of consecutive logins.", 180, true),
+		Title(70, DAILY_REWARD, "Creature of Habit (Grade 5)", "Reward Streak of at least 365 days of consecutive logins.", 365, true),
 
-		Title(70, TASK, "Aspiring Huntsman", "Invested 160,000 tasks points.", 160000, true, "Aspiring Huntswoman"),
-		Title(71, TASK, "Competent Beastslayer", "Invested 320,000 tasks points.", 320000, true),
-		Title(72, TASK, "Feared Bountyhunter", "Invested 430,000 tasks points.", 430000, true),
+		Title(71, TASK, "Aspiring Huntsman", "Invested 160,000 tasks points.", 160000, true, "Aspiring Huntswoman"),
+		Title(72, TASK, "Competent Beastslayer", "Invested 320,000 tasks points.", 320000, true),
+		Title(73, TASK, "Feared Bountyhunter", "Invested 430,000 tasks points.", 430000, true),
 
-		Title(73, MAP, "Dedicated Entrepreneur", "Explored 50% of all the map areas.", 50, false),
-		Title(74, MAP, "Globetrotter", "Explored all map areas.", 100, false),
+		Title(74, MAP, "Dedicated Entrepreneur", "Explored 50% of all the map areas.", 50, false),
+		Title(75, MAP, "Globetrotter", "Explored all map areas.", 100, false),
 
-		Title(75, OTHERS, "Guild Leader", "Leading a Guild.", false),
-		Title(76, OTHERS, "Proconsul of Iksupan", "Only a true devotee to the cause of the ancient Iks and their lost legacy may step up to the rank of proconsul.", true),
-		Title(77, OTHERS, "Admirer of the Crown", "Adjust your crown and handle it.", true),
-		Title(78, OTHERS, "Big Spender", "Unlocked the full Golden Outfit.", true),
-		Title(79, OTHERS, "Challenger of the Iks", "Challenged Ahau, guardian of Iksupan, in traditional Iks warrior attire.", true),
-		Title(80, OTHERS, "Royal Bounacean Advisor", "Called to the court of Bounac by Kesar the Younger himself.", true),
-		Title(81, OTHERS, "Aeternal", "Awarded exclusively to stalwart heroes keeping the faith under all circumstances.", true),
-		Title(82, OTHERS, "Robinson Crusoe", "Some discoveries are reserved to only the most experienced adventurers. Until the next frontier opens on the horizon.", true),
-		Title(83, OTHERS, "Chompmeister", "Awarded only to true connoisseurs undertaking even the most exotic culinary escapades.", true),
-		Title(84, OTHERS, "Bringer of Rain", "Forging through battle after battle like a true gladiator.", true),
-		Title(85, OTHERS, "Beastly", "Reached 2000 charm points. Quite beastly!", true),
-		Title(86, OTHERS, "Midnight Hunter", "When the hunter becomes the hunted, perseverance decides the game.", true),
-		Title(87, OTHERS, "Ratinator", "Killing some snarky cave rats is helpful, killing over ten thousand of them is a statement.", true),
-		Title(88, OTHERS, "Doomsday Nemesis", "Awarded for great help in the battle against Gaz'haragoth.", true),
-		Title(89, OTHERS, "Hero of Bounac", "You prevailed during the battle of Bounac and broke the siege that held Bounac's people in its firm grasp.", true), // Derrotar o boss Drume.
-		Title(90, OTHERS, "King of Demon", "Defeat Morshabaal 5 times.", 0, true, "Queen of Demon"),
-		Title(91, OTHERS, "Planegazer", "Followed the trail of the Planestrider to the end.", true),
-		Title(92, OTHERS, "Time Traveller", "Anywhere in time or space.", true),
-		Title(93, OTHERS, "Truly Boss", "Reach 15,000 boss points.", true),
-		Title(94, OTHERS, "Pensive Wanderer", "You have honoured the Merudri by visiting all of their shrines and completing the ancient Three-Fold Path.", true),
+		Title(76, OTHERS, "Guild Leader", "Leading a Guild.", false),
+		Title(77, OTHERS, "Proconsul of Iksupan", "Only a true devotee to the cause of the ancient Iks and their lost legacy may step up to the rank of proconsul.", true),
+		Title(78, OTHERS, "Admirer of the Crown", "Adjust your crown and handle it.", true),
+		Title(79, OTHERS, "Big Spender", "Unlocked the full Golden Outfit.", true),
+		Title(80, OTHERS, "Challenger of the Iks", "Challenged Ahau, guardian of Iksupan, in traditional Iks warrior attire.", true),
+		Title(81, OTHERS, "Royal Bounacean Advisor", "Called to the court of Bounac by Kesar the Younger himself.", true),
+		Title(82, OTHERS, "Aeternal", "Awarded exclusively to stalwart heroes keeping the faith under all circumstances.", true),
+		Title(83, OTHERS, "Robinson Crusoe", "Some discoveries are reserved to only the most experienced adventurers. Until the next frontier opens on the horizon.", true),
+		Title(84, OTHERS, "Chompmeister", "Awarded only to true connoisseurs undertaking even the most exotic culinary escapades.", true),
+		Title(85, OTHERS, "Bringer of Rain", "Forging through battle after battle like a true gladiator.", true),
+		Title(86, OTHERS, "Beastly", "Reached 2000 charm points. Quite beastly!", true),
+		Title(87, OTHERS, "Midnight Hunter", "When the hunter becomes the hunted, perseverance decides the game.", true),
+		Title(88, OTHERS, "Ratinator", "Killing some snarky cave rats is helpful, killing over ten thousand of them is a statement.", true),
+		Title(89, OTHERS, "Doomsday Nemesis", "Awarded for great help in the battle against Gaz'haragoth.", true),
+		Title(90, OTHERS, "Hero of Bounac", "You prevailed during the battle of Bounac and broke the siege that held Bounac's people in its firm grasp.", true), // Derrotar o boss Drume.
+		Title(91, OTHERS, "King of Demon", "Defeat Morshabaal 5 times.", 0, true, "Queen of Demon"),
+		Title(92, OTHERS, "Planegazer", "Followed the trail of the Planestrider to the end.", true),
+		Title(93, OTHERS, "Time Traveller", "Anywhere in time or space.", true),
+		Title(94, OTHERS, "Truly Boss", "Reach 15,000 boss points.", true),
+		Title(95, OTHERS, "Pensive Wanderer", "You have honoured the Merudri by visiting all of their shrines and completing the ancient Three-Fold Path.", true),
 	};
 
 	m_highscoreCategoriesNames = {
@@ -1170,7 +1171,7 @@ ReturnValue Game::getPlayerByNameWildcard(const std::string &s, std::shared_ptr<
 
 std::vector<std::shared_ptr<Player>> Game::getPlayersByAccount(const std::shared_ptr<Account> &acc, bool allowOffline /* = false */) {
 	auto [accountPlayers, error] = acc->getAccountPlayers();
-	if (error != AccountErrors_t::Ok) {
+	if (error != enumToValue(AccountErrors_t::Ok)) {
 		return {};
 	}
 	std::vector<std::shared_ptr<Player>> ret;
@@ -2815,7 +2816,20 @@ void Game::addMoney(const std::shared_ptr<Cylinder> &cylinder, uint64_t money, u
 			const uint16_t createCount = std::min<uint32_t>(100, count);
 			const std::shared_ptr<Item> &remaindItem = Item::CreateItem(itemId, createCount);
 
-			ReturnValue ret = internalAddItem(cylinder, remaindItem, INDEX_WHEREEVER, flags);
+			ReturnValue ret = RETURNVALUE_NOTPOSSIBLE;
+			bool triedManaged = false;
+
+			if (const auto &player = std::dynamic_pointer_cast<Player>(cylinder)) {
+				if (!g_configManager().getBoolean(AUTOBANK)) {
+					ret = internalCollectManagedItems(player, remaindItem, getObjectCategory(remaindItem), true);
+					triedManaged = true;
+				}
+			}
+
+			if (!triedManaged || ret != RETURNVALUE_NOERROR) {
+				ret = internalAddItem(cylinder, remaindItem, INDEX_WHEREEVER, flags);
+			}
+
 			if (ret != RETURNVALUE_NOERROR) {
 				internalAddItem(cylinder->getTile(), remaindItem, INDEX_WHEREEVER, FLAG_NOLIMIT);
 			}
@@ -7093,7 +7107,7 @@ bool Game::combatBlockHit(CombatDamage &damage, const std::shared_ptr<Creature> 
 					}
 					damageReflected.extension = true;
 					damageReflected.exString += " (damage reflection)";
-					damageReflectedParams.combatType = damage.primary.type;
+					damageReflectedParams.combatType = damage.secondary.type;
 					damageReflectedParams.aggressive = true;
 					canReflect = true;
 				}
@@ -7127,13 +7141,13 @@ bool Game::combatBlockHit(CombatDamage &damage, const std::shared_ptr<Creature> 
 		damage.secondary.value = -damage.secondary.value;
 		InternalGame::sendBlockEffect(secondaryBlockType, damage.secondary.type, target->getPosition(), attacker);
 
-		if (!damage.extension && attacker && target->getMonster()) {
+		if (!damage.extension && attacker) {
 			int32_t secondaryReflectPercent = target->getReflectPercent(damage.secondary.type, true);
 			int32_t secondaryReflectFlat = target->getReflectFlat(damage.secondary.type, true);
 			if (secondaryReflectPercent > 0 || secondaryReflectFlat > 0) {
 				if (!canReflect) {
 					int32_t reflectFlat = -static_cast<int32_t>(secondaryReflectFlat);
-					int32_t reflectPercent = std::ceil(damage.primary.value * secondaryReflectPercent / 100.);
+					int32_t reflectPercent = std::ceil(damage.secondary.value * secondaryReflectPercent / 100.);
 					int32_t reflectLimit = std::ceil(attacker->getMaxHealth() * 0.01);
 					damageReflected.primary.value = std::max(-reflectLimit, reflectFlat + reflectPercent);
 					damageReflected.primary.type = damage.secondary.type;
@@ -7142,12 +7156,12 @@ bool Game::combatBlockHit(CombatDamage &damage, const std::shared_ptr<Creature> 
 					}
 					damageReflected.extension = true;
 					damageReflected.exString += " (damage reflection)";
-					damageReflectedParams.combatType = damage.primary.type;
+					damageReflectedParams.combatType = damage.secondary.type;
 					damageReflectedParams.aggressive = true;
 					canReflect = true;
 				} else {
 					damageReflected.secondary.type = damage.secondary.type;
-					damageReflected.primary.value = std::ceil(damage.secondary.value * secondaryReflectPercent / 100.) + std::max(-static_cast<int32_t>(std::ceil(attacker->getMaxHealth() * 0.01)), std::max(damage.secondary.value, -(static_cast<int32_t>(secondaryReflectFlat))));
+					damageReflected.secondary.value = std::max(-static_cast<int32_t>(std::ceil(attacker->getMaxHealth() * 0.01)), -static_cast<int32_t>(secondaryReflectFlat) + static_cast<int32_t>(std::ceil(damage.secondary.value * secondaryReflectPercent / 100.)));
 				}
 			}
 		}
@@ -7164,7 +7178,7 @@ bool Game::combatBlockHit(CombatDamage &damage, const std::shared_ptr<Creature> 
 		if (!damage.exString.empty()) {
 			damage.exString += ", ";
 		}
-		damage.exString += "active elemental resiliance";
+		damage.exString += "active elemental resilience";
 	}
 
 	if (damageIncreaseMessage) {
@@ -9627,7 +9641,7 @@ void Game::playerCreateMarketOffer(uint32_t playerId, uint8_t type, uint16_t ite
 		}
 
 		if (it.id == ITEM_STORE_COIN) {
-			auto [transferableCoins, result] = player->getAccount()->getCoins(CoinType::Transferable);
+			auto [transferableCoins, result] = player->getAccount()->getCoins(enumToValue(CoinType::Transferable));
 
 			if (amount > transferableCoins) {
 				offerStatus << "Amount is greater than coins for player " << player->getName();
@@ -9635,7 +9649,7 @@ void Game::playerCreateMarketOffer(uint32_t playerId, uint8_t type, uint16_t ite
 			}
 
 			// Do not register a transaction for coins creating an offer
-			player->getAccount()->removeCoins(CoinType::Transferable, static_cast<uint32_t>(amount), "");
+			player->getAccount()->removeCoins(enumToValue(CoinType::Transferable), static_cast<uint32_t>(amount), "");
 		} else {
 			if (player->getStashItemCount(it.wareId) > 0) {
 				g_logger().debug("[Market] Player {} has item {} in stash, forcing tier 0 for the offer.", player->getName(), itemId);
@@ -9722,7 +9736,7 @@ void Game::playerCancelMarketOffer(uint32_t playerId, uint32_t timestamp, uint16
 
 		if (it.id == ITEM_STORE_COIN) {
 			// Do not register a transaction for coins upon cancellation
-			player->getAccount()->addCoins(CoinType::Transferable, offer.amount, "");
+			player->getAccount()->addCoins(enumToValue(CoinType::Transferable), offer.amount, "");
 		} else if (it.stackable) {
 			uint16_t tmpAmount = offer.amount;
 
@@ -9841,20 +9855,15 @@ void Game::playerAcceptMarketOffer(uint32_t playerId, uint32_t timestamp, uint16
 		const auto &buyerPlayerInbox = buyerPlayer->getInbox();
 
 		if (it.id == ITEM_STORE_COIN) {
-			auto [transferableCoins, error] = playerAccount->getCoins(CoinType::Transferable);
-
-			if (error != AccountErrors_t::Ok) {
-				offerStatus << "Failed to load transferable coins for player " << player->getName();
-				return;
-			}
+			auto [transferableCoins, result] = player->getAccount()->getCoins(enumToValue(CoinType::Transferable));
 
 			if (amount > transferableCoins) {
-				offerStatus << "Amount is greater than coins";
+				offerStatus << "Amount is greater than coins for player " << player->getName();
 				return;
 			}
 
 			playerAccount->removeCoins(
-				CoinType::Transferable,
+				enumToValue(CoinType::Transferable),
 				amount,
 				"Sold on Market"
 			);
@@ -9882,7 +9891,7 @@ void Game::playerAcceptMarketOffer(uint32_t playerId, uint32_t timestamp, uint16
 		g_metrics().addCounter("balance_increase", totalPrice, { { "player", player->getName() }, { "context", "market_sale" } });
 
 		if (it.id == ITEM_STORE_COIN) {
-			buyerPlayer->getAccount()->addCoins(CoinType::Transferable, amount, "Purchased on Market");
+			buyerPlayer->getAccount()->addCoins(enumToValue(CoinType::Transferable), amount, "Purchased on Market");
 		} else if (it.stackable) {
 			uint16_t tmpAmount = amount;
 			while (tmpAmount > 0) {
@@ -9953,7 +9962,7 @@ void Game::playerAcceptMarketOffer(uint32_t playerId, uint32_t timestamp, uint16
 		g_metrics().addCounter("balance_decrease", totalPrice, { { "player", player->getName() }, { "context", "market_purchase" } });
 
 		if (it.id == ITEM_STORE_COIN) {
-			player->getAccount()->addCoins(CoinType::Transferable, amount, "Purchased on Market");
+			player->getAccount()->addCoins(enumToValue(CoinType::Transferable), amount, "Purchased on Market");
 		} else if (it.stackable) {
 			uint16_t tmpAmount = amount;
 			while (tmpAmount > 0) {
@@ -10007,7 +10016,7 @@ void Game::playerAcceptMarketOffer(uint32_t playerId, uint32_t timestamp, uint16
 		sellerPlayer->setBankBalance(sellerPlayer->getBankBalance() + totalPrice);
 		g_metrics().addCounter("balance_increase", totalPrice, { { "player", sellerPlayer->getName() }, { "context", "market_sale" } });
 		if (it.id == ITEM_STORE_COIN) {
-			sellerPlayer->getAccount()->registerCoinTransaction(CoinTransactionType::Remove, CoinType::Transferable, amount, "Sold on Market");
+			sellerPlayer->getAccount()->registerCoinTransaction(enumToValue(CoinTransactionType::Remove), enumToValue(CoinType::Transferable), amount, "Sold on Market");
 		}
 
 		if (it.id != ITEM_STORE_COIN) {

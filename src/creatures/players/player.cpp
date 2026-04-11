@@ -78,6 +78,7 @@
 #include "creatures/players/wheel/wheel_definitions.hpp"
 #include "creatures/players/proficiencies/proficiencies.hpp"
 #include "creatures/players/proficiencies/proficiencies_definitions.hpp"
+#include "utils/tools.hpp"
 
 MuteCountMap Player::muteCountMap;
 
@@ -6866,7 +6867,11 @@ void Player::setSpecialMenuAvailable(bool stashBool, bool marketMenuBool, bool d
 	// Menu option 'show in market'
 	// Menu option to open depot search
 	stashMenuAvailable = stashBool;
-	marketMenu = marketMenuBool;
+	if (g_configManager().getBoolean(ENABLE_MARKET)) {
+		marketMenu = marketMenuBool;
+	} else {
+		marketMenu = false;
+	}
 	depotSearch = depotSearchBool;
 	if (client) {
 		client->sendSpecialContainersAvailable();
@@ -8965,6 +8970,12 @@ void Player::sendContainer(uint8_t cid, const std::shared_ptr<Container> &contai
 	}
 }
 
+void Player::sendExivaRestrictions() {
+	if (client) {
+		client->sendExivaRestrictions();
+	}
+}
+
 // inventory
 void Player::sendDepotItems(const ItemsTierCountList &itemMap, uint16_t count) const {
 	if (client) {
@@ -10277,6 +10288,20 @@ void Player::forgeFuseItems(ForgeAction_t actionType, uint16_t firstItemId, uint
 		return;
 	}
 
+	auto configKey = convergence ? FORGE_CONVERGENCE_FUSION_DUST_COST : FORGE_FUSION_DUST_COST;
+	auto dustCost = static_cast<uint64_t>(g_configManager().getNumber(configKey));
+	if (getForgeDusts() < dustCost) {
+		sendForgeError(RETURNVALUE_CONTACTADMINISTRATOR);
+		return;
+	}
+	if (coreCount > 0) {
+		const auto &[sliverCountAvail, coreCountAvail] = getForgeSliversAndCores();
+		if (coreCountAvail < coreCount) {
+			sendForgeError(RETURNVALUE_CONTACTADMINISTRATOR);
+			return;
+		}
+	}
+
 	ForgeHistory history;
 	history.actionType = actionType;
 	history.tier = tier;
@@ -10337,8 +10362,6 @@ void Player::forgeFuseItems(ForgeAction_t actionType, uint16_t firstItemId, uint
 		return;
 	}
 
-	auto configKey = convergence ? FORGE_CONVERGENCE_FUSION_DUST_COST : FORGE_FUSION_DUST_COST;
-	auto dustCost = static_cast<uint64_t>(g_configManager().getNumber(configKey));
 	if (convergence) {
 		firstForgedItem->setTier(tier + 1);
 		history.dustCost = dustCost;
@@ -10520,6 +10543,12 @@ void Player::forgeTransferItemTier(ForgeAction_t actionType, uint16_t donorItemI
 		return;
 	}
 
+	auto configKey = convergence ? FORGE_CONVERGENCE_TRANSFER_DUST_COST : FORGE_TRANSFER_DUST_COST;
+	if (getForgeDusts() < g_configManager().getNumber(configKey)) {
+		sendForgeError(RETURNVALUE_CONTACTADMINISTRATOR);
+		return;
+	}
+
 	ForgeHistory history;
 	history.actionType = actionType;
 	history.tier = tier;
@@ -10530,6 +10559,30 @@ void Player::forgeTransferItemTier(ForgeAction_t actionType, uint16_t donorItemI
 		g_logger().error("[Log 1] Player with name {} failed to transfer item with id {}", getName(), donorItemId);
 		sendForgeError(RETURNVALUE_CONTACTADMINISTRATOR);
 		return;
+	}
+	uint8_t coresAmount = 0;
+	uint64_t cost = 0;
+	for (const auto &itemClassification : g_game().getItemsClassifications()) {
+		if (itemClassification->id != donorItem->getClassification()) {
+			continue;
+		}
+		if (!itemClassification->tiers.contains(donorItem->getTier())) {
+			g_logger().error("[{}] Failed to find tier {} for item {} in classification {}", __FUNCTION__, donorItem->getTier(), donorItem->getClassification(), itemClassification->id);
+			sendForgeError(RETURNVALUE_CONTACTADMINISTRATOR);
+			break;
+		}
+		const uint8_t toTier = convergence ? donorItem->getTier() : donorItem->getTier() - 1;
+		auto tierPriecs = itemClassification->tiers.at(toTier);
+		cost = convergence ? tierPriecs.convergenceTransferPrice : tierPriecs.regularPrice;
+		coresAmount = tierPriecs.corePrice;
+		break;
+	}
+	if (coresAmount > 0) {
+		const auto &[sliverCountAvail, coreCountAvail] = getForgeSliversAndCores();
+		if (coreCountAvail < coresAmount) {
+			sendForgeError(RETURNVALUE_CONTACTADMINISTRATOR);
+			return;
+		}
 	}
 	auto returnValue = g_game().internalRemoveItem(donorItem, 1);
 	if (returnValue != RETURNVALUE_NOERROR) {
@@ -10573,13 +10626,6 @@ void Player::forgeTransferItemTier(ForgeAction_t actionType, uint16_t donorItemI
 		return;
 	}
 
-	auto configKey = convergence ? FORGE_CONVERGENCE_TRANSFER_DUST_COST : FORGE_TRANSFER_DUST_COST;
-	if (getForgeDusts() < g_configManager().getNumber(configKey)) {
-		g_logger().error("[Log 8] Failed to remove transfer dusts from player with name {}", getName());
-		sendForgeError(RETURNVALUE_CONTACTADMINISTRATOR);
-		return;
-	}
-
 	setForgeDusts(getForgeDusts() - g_configManager().getNumber(configKey));
 
 	if (convergence) {
@@ -10593,25 +10639,6 @@ void Player::forgeTransferItemTier(ForgeAction_t actionType, uint16_t donorItemI
 		sendCancelMessage(getReturnMessage(returnValue));
 		sendForgeError(RETURNVALUE_CONTACTADMINISTRATOR);
 		return;
-	}
-
-	uint8_t coresAmount = 0;
-	uint64_t cost = 0;
-	for (const auto &itemClassification : g_game().getItemsClassifications()) {
-		if (itemClassification->id != donorItem->getClassification()) {
-			continue;
-		}
-		if (!itemClassification->tiers.contains(donorItem->getTier())) {
-			g_logger().error("[{}] Failed to find tier {} for item {} in classification {}", __FUNCTION__, donorItem->getTier(), donorItem->getClassification(), itemClassification->id);
-			sendForgeError(RETURNVALUE_CONTACTADMINISTRATOR);
-			break;
-		}
-
-		const uint8_t toTier = convergence ? donorItem->getTier() : donorItem->getTier() - 1;
-		auto tierPriecs = itemClassification->tiers.at(toTier);
-		cost = convergence ? tierPriecs.convergenceTransferPrice : tierPriecs.regularPrice;
-		coresAmount = tierPriecs.corePrice;
-		break;
 	}
 
 	if (!removeItemCountById(ITEM_FORGE_CORE, coresAmount)) {
@@ -11561,11 +11588,11 @@ bool Player::setAccount(uint32_t accountId) {
 	}
 
 	account = std::make_shared<Account>(accountId);
-	return AccountErrors_t::Ok == account->load();
+	return AccountErrors_t::Ok == enumFromValue<AccountErrors_t>(account->load());
 }
 
 uint8_t Player::getAccountType() const {
-	return account ? account->getAccountType() : AccountType::ACCOUNT_TYPE_NORMAL;
+	return account ? account->getAccountType() : static_cast<uint8_t>(AccountType::ACCOUNT_TYPE_NORMAL);
 }
 
 uint32_t Player::getAccountId() const {
@@ -12680,4 +12707,68 @@ void Player::removeEquippedWeaponProficiency(const uint16_t itemId) {
 
 	sendStats();
 	sendSkills();
+}
+
+bool Player::canExiva(const std::string &spellParam) const {
+	if (g_game().getWorldType() != WORLDTYPE_OPTIONAL && !g_configManager().getBoolean(EXIVA_RESTRICTIONS_ONLY_OPTIONAL_WORLDS)) {
+		return true;
+	}
+
+	const auto &targetPlayer = g_game().getPlayerByName(spellParam);
+	if (!targetPlayer) {
+		return false;
+	}
+
+	const auto &targetRestrictions = targetPlayer->getExivaRestrictions();
+
+	if (targetRestrictions.allowAll) {
+		return true;
+	}
+
+	if (targetRestrictions.allowOwnGuild) {
+		const auto &sourceGuild = getGuild();
+		const auto &targetGuild = targetPlayer->getGuild();
+		if (sourceGuild && targetGuild && sourceGuild->getId() == targetGuild->getId()) {
+			return true;
+		}
+	}
+
+	if (targetRestrictions.allowOwnParty) {
+		const auto &sourceParty = getParty();
+		const auto &targetParty = targetPlayer->getParty();
+		if (sourceParty && targetParty && sourceParty == targetParty) {
+			return true;
+		}
+	}
+
+	if (targetRestrictions.allowVipList && targetPlayer->vip() && targetPlayer->vip()->exists(getGUID())) {
+		return true;
+	}
+
+	if (targetRestrictions.allowGuildWhitelist) {
+		const auto &playerGuild = getGuild();
+		if (playerGuild) {
+			auto it = std::ranges::find(targetRestrictions.guildWhitelist, playerGuild->getId());
+			if (it != targetRestrictions.guildWhitelist.end()) {
+				return true;
+			}
+		}
+	}
+
+	if (targetRestrictions.allowPlayerWhitelist) {
+		auto it = std::ranges::find(targetRestrictions.playerWhitelist, getGUID());
+		if (it != targetRestrictions.playerWhitelist.end()) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+Player::ExivaRestrictions &Player::getExivaRestrictions() {
+	return exivaRestrictions;
+}
+
+const Player::ExivaRestrictions &Player::getExivaRestrictions() const {
+	return exivaRestrictions;
 }

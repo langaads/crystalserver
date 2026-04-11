@@ -43,5 +43,4 @@ spell:cooldown(2 * 60 * 60 * 1000) -- Default cooldown = 2 hours
 spell:groupCooldown(2 * 1000)
 spell:vocation("knight;true", "elite knight;true")
 spell:isAggressive(false)
-spell:needLearn(false)
 spell:register()
