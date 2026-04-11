@@ -5903,14 +5903,14 @@ void ProtocolGame::sendOpenForge() {
 
 		auto itemClassification = item->getClassification();
 		auto itemTier = item->getTier();
-		auto maxTier = (itemClassification == 4 ? maxConfigTier : itemClassification);
+		auto maxTier = maxConfigTier;
 		// Save fusion items on map
 		if (itemClassification != 0 && itemTier < maxTier) {
 			getForgeInfoMap(item, fusionItemsMap);
 		}
 
 		if (itemClassification > 0) {
-			if (itemClassification < 4 && itemTier > maxTier) {
+			if (itemTier > maxTier) {
 				continue;
 			}
 			// Save transfer (donator of tier) items on map

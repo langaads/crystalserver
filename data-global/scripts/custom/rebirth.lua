@@ -7,11 +7,12 @@ Rebirth = {
 		expToSkillPercent = 100, -- 100% da exp total será convertida
 		coinsPerLevel = 1, -- 1 tibia coin por level
 		pointsPerLevelAboveHistory = 1, -- 1 ponto por level acima do histórico
-		pointsPerLevelBelowHistory = 1, -- pontos por level até o histórico (arredondado para baixo)
+		pointsPerLevelBelowHistory = 0.1, -- pontos por level até o histórico (arredondado para baixo)
 	},
 
 	-- Skills disponíveis para rebirth
 	Skills = {
+		["fisting"] = SKILL_FIST,
 		["sword"] = SKILL_SWORD,
 		["club"] = SKILL_CLUB,
 		["axe"] = SKILL_AXE,
@@ -47,7 +48,7 @@ function Rebirth.calculateSkillTries(player, skill)
 		-- Aproximação: 1 magic level = ~400.000 mana spent em vocações normais
 		-- Vamos converter exp em mana spent de forma proporcional
 		-- 1 exp = aproximadamente 0.1 mana spent
-		return math.floor(expToConvert * 0.1)
+		return math.floor(expToConvert * 2)
 	else
 		-- Para skills de combate, cada skill try tem um custo que aumenta com o level
 		-- Vamos converter a exp diretamente em tries
@@ -76,7 +77,7 @@ function Rebirth.execute(player, skillName)
 	-- Verifica se a skill é válida
 	local skill = Rebirth.Skills[skillName:lower()]
 	if not skill then
-		return false, "Skill inválida. Escolha: sword, club, axe, distance, shielding, fishing ou magiclevel."
+		return false, "Skill inválida. Escolha: fisting, sword, club, axe, distance, shielding, fishing ou magiclevel."
 	end
 
 	-- Pega informações atuais do jogador
@@ -89,7 +90,7 @@ function Rebirth.execute(player, skillName)
 	local promotionPointsToGive = Rebirth.calculatePromotionPoints(currentLevel, previousLevelHistory)
 
 	-- Calcula tibia coins
-	local coinsToGive = (currentLevel - 1) * Rebirth.Config.coinsPerLevel -- Level 1 = 0 coins
+	local coinsToGive = (currentLevel - 8) * Rebirth.Config.coinsPerLevel -- Level 8 = 0 coins
 
 	-- Atualiza histórico de level (maior level já alcançado antes do rebirth)
 	local newLevelHistory = math.max(previousLevelHistory, currentLevel)
@@ -101,12 +102,6 @@ function Rebirth.execute(player, skillName)
 		player:addPromotionPoints(promotionPointsToGive)
 	end
 
-	-- Remove toda experiência (isso mantém o level 1)
-	player:removeExperience(currentExp, false)
-	player:setLevel(1)
-	-- enche stamina e offline training
-	player:setStamina(2520)
-	player:addOfflineTrainingTime(43200) -- 12 horas de offline training
 
 	-- Adiciona skill tries
 	if skill == SKILL_MAGLEVEL then
@@ -123,6 +118,16 @@ function Rebirth.execute(player, skillName)
 	-- Efeitos visuais
 	player:getPosition():sendMagicEffect(CONST_ME_HOLYAREA)
 	player:getPosition():sendMagicEffect(CONST_ME_HOLYDAMAGE)
+
+	-- Remove toda experiência (isso mantém o level 1)
+	player:removeExperience(currentExp, false)
+	player:setLevel(1)
+	-- enche stamina e offline training
+	player:setStamina(2520)
+	player:addOfflineTrainingTime(43200) -- 12 horas de offline training
+	player:setMaxMana(50)
+	player:setMaxHealth(150)
+	player:setCapacity(40000)
 
 	-- Mensagem de sucesso
 	local skillNameDisplay = skillName:gsub("^%l", string.upper)

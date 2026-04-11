@@ -489,11 +489,12 @@ function Player:onGainExperience(target, exp, rawExp)
 	end
 
 	local rebirthLevelHistory = self:kv():scoped("rebirth"):get("level-history") or 0
-	local rebirthBonusExp = (rebirthLevelHistory > 0 and self:getLevel() < rebirthLevelHistory) and 100 or 0
+	local playerLevel = self:getLevel()
+	local rebirthBonusExp = (rebirthLevelHistory > 0 and playerLevel < rebirthLevelHistory) and (playerLevel * 2) or 0
 
 	-- Soul regeneration
 	local vocation = self:getVocation()
-	if self:getSoul() < vocation:getMaxSoul() and exp >= self:getLevel() then
+	if self:getSoul() < vocation:getMaxSoul() and exp >= playerLevel then
 		soulCondition:setParameter(CONDITION_PARAM_SOULTICKS, vocation:getSoulGainTicks())
 		self:addCondition(soulCondition)
 	end

@@ -27257,6 +27257,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="28" />
 		<attribute key="defense" value="15" />
+		<attribute key="range" value="3" />
 		<attribute key="weight" value="5000" />
 		<attribute key="imbuementslot" value="2">
 			<attribute key="life leech" value="3" />
@@ -27299,6 +27300,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="41" />
 		<attribute key="defense" value="16" />
+		<attribute key="range" value="3" />
 		<attribute key="weight" value="6000" />
 		<attribute key="imbuementslot" value="2">
 			<attribute key="life leech" value="3" />
@@ -32705,6 +32707,13 @@
 			<attribute key="weaponType" value="distance" />
 			<attribute key="vocation" value="Paladin;true, Royal Paladin" />
 		</attribute>
+		<attribute key="imbuementslot" value="3">
+			<attribute key="elemental damage" value="3" />
+			<attribute key="life leech" value="3" />
+			<attribute key="mana leech" value="3" />
+			<attribute key="critical hit" value="3" />
+			<attribute key="skillboost distance" value="3" />
+		</attribute>
 	</item>
 	<item id="14248" article="a" name="deepling backpack">
 		<attribute key="primarytype" value="containers" />
@@ -34632,6 +34641,13 @@
 		<attribute key="range" value="6" />
 		<attribute key="attack" value="4" />
 		<attribute key="weight" value="8400" />
+		<attribute key="imbuementslot" value="3">
+			<attribute key="elemental damage" value="3" />
+			<attribute key="life leech" value="3" />
+			<attribute key="mana leech" value="3" />
+			<attribute key="critical hit" value="3" />
+			<attribute key="skillboost distance" value="3" />
+		</attribute>
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="90" />
 			<attribute key="unproperly" value="true" />
@@ -36089,6 +36105,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="40" />
 		<attribute key="defense" value="15" />
+		<attribute key="range" value="3" />
 		<attribute key="weight" value="4500" />
 		<attribute key="imbuementslot" value="2">
 			<attribute key="life leech" value="3" />
@@ -83191,6 +83208,7 @@
 		<attribute key="criticalhitchance" value="1000" />
 		<attribute key="magiclevelpoints" value="2" />
 		<attribute key="defense" value="21" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="5" />
 		<attribute key="weight" value="7100" />
 		<attribute key="imbuementslot" value="3">
@@ -83221,6 +83239,7 @@
 		<attribute key="criticalhitdamage" value="1200" />
 		<attribute key="criticalhitchance" value="1000" />
 		<attribute key="magiclevelpoints" value="2" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="5" />
 		<attribute key="weight" value="6900" />
 		<attribute key="imbuementslot" value="3">
@@ -83250,6 +83269,7 @@
 		<attribute key="criticalhitdamage" value="1000" />
 		<attribute key="attack" value="46" />
 		<attribute key="defense" value="21" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="5" />
 		<attribute key="magiclevelpoints" value="1" />
 		<attribute key="weight" value="8400" />
@@ -83273,6 +83293,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="44" />
 		<attribute key="defense" value="21" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="3" />
 		<attribute key="magiclevelpoints" value="1" />
 		<attribute key="weight" value="6000" />
@@ -83298,6 +83319,7 @@
 		<attribute key="lifeleechchance" value="10000" />
 		<attribute key="attack" value="45" />
 		<attribute key="defense" value="20" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="4" />
 		<attribute key="weight" value="8200" />
 		<attribute key="imbuementslot" value="2">
@@ -83321,6 +83343,7 @@
 		<attribute key="criticalhitdamage" value="2900" />
 		<attribute key="attack" value="45" />
 		<attribute key="defense" value="19" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="4" />
 		<attribute key="weight" value="7800" />
 		<attribute key="imbuementslot" value="2">
@@ -83342,6 +83365,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="41" />
 		<attribute key="defense" value="16" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="1" />
 		<attribute key="weight" value="7900" />
 		<attribute key="script" value="moveevent;weapon">
@@ -83358,6 +83382,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="42" />
 		<attribute key="defense" value="17" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="2" />
 		<attribute key="weight" value="7400" />
 		<attribute key="imbuementslot" value="1">
@@ -83380,6 +83405,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="43" />
 		<attribute key="defense" value="18" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="3" />
 		<attribute key="weight" value="6900" />
 		<attribute key="imbuementslot" value="2">
@@ -83402,6 +83428,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="10" />
 		<attribute key="defense" value="6" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="1" />
 		<attribute key="weight" value="1700" />
 		<attribute key="script" value="moveevent;weapon">
@@ -83416,6 +83443,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="44" />
 		<attribute key="defense" value="20" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="4" />
 		<attribute key="lifeleechchance" value="10000" />
 		<attribute key="lifeleechamount" value="1400" />
@@ -83440,6 +83468,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="42" />
 		<attribute key="defense" value="17" />
+		<attribute key="range" value="3" />
 		<attribute key="weight" value="7000" />
 		<attribute key="imbuementslot" value="3">
 			<attribute key="life leech" value="3" />
@@ -83461,6 +83490,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="44" />
 		<attribute key="defense" value="20" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="2" />
 		<attribute key="magiclevelpoints" value="2" />
 		<attribute key="reflectdamage" value="50" />
@@ -83486,6 +83516,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="44" />
 		<attribute key="defense" value="20" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="2" />
 		<attribute key="magiclevelpoints" value="2" />
 		<attribute key="reflectdamage" value="50" />
@@ -83510,6 +83541,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="18" />
 		<attribute key="defense" value="12" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="1" />
 		<attribute key="augments" value="1">
 			<attribute key="swift jab" value="critical extra damage">
@@ -83529,6 +83561,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="42" />
 		<attribute key="defense" value="18" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="2" />
 		<attribute key="magiclevelpoints" value="1" />
 		<attribute key="weight" value="6400" />
@@ -83552,6 +83585,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="22" />
 		<attribute key="defense" value="14" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="1" />
 		<attribute key="weight" value="1200" />
 		<attribute key="script" value="moveevent;weapon">
@@ -83568,6 +83602,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="32" />
 		<attribute key="defense" value="15" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="1" />
 		<attribute key="weight" value="2500" />
 		<attribute key="script" value="moveevent;weapon">
@@ -83584,6 +83619,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="38" />
 		<attribute key="defense" value="16" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="1" />
 		<attribute key="weight" value="4900" />
 		<attribute key="imbuementslot" value="1">
@@ -83811,6 +83847,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="46" />
 		<attribute key="defense" value="20" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="5" />
 		<attribute key="magiclevelpoints" value="1" />
 		<attribute key="weight" value="8600" />
@@ -83873,6 +83910,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="45" />
 		<attribute key="defense" value="21" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="4" />
 		<attribute key="weight" value="8400" />
 		<attribute key="imbuementslot" value="2">
@@ -83897,6 +83935,7 @@
 		<attribute key="criticalhitdamage" value="5800" />
 		<attribute key="attack" value="45" />
 		<attribute key="defense" value="21" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="4" />
 		<attribute key="weight" value="8400" />
 		<attribute key="imbuementslot" value="1">
@@ -83918,6 +83957,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="45" />
 		<attribute key="defense" value="21" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="4" />
 		<attribute key="lifeleechchance" value="10000" />
 		<attribute key="lifeleechamount" value="2900" />
@@ -84260,6 +84300,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="42" />
 		<attribute key="defense" value="19" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="2" />
 		<attribute key="weight" value="3800" />
 		<attribute key="imbuementslot" value="2">
@@ -84283,6 +84324,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="24" />
 		<attribute key="defense" value="14" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="1" />
 		<attribute key="weight" value="1800" />
 		<attribute key="imbuementslot" value="1">
@@ -84311,6 +84353,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="42" />
 		<attribute key="defense" value="16" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="1" />
 		<attribute key="weight" value="5900" />
 		<attribute key="imbuementslot" value="1">
@@ -84334,6 +84377,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="34" />
 		<attribute key="defense" value="15" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="1" />
 		<attribute key="imbuementslot" value="1">
 			<attribute key="life leech" value="3" />
@@ -84628,6 +84672,7 @@
 		<attribute key="slotType" value="two-handed" />
 		<attribute key="attack" value="12" />
 		<attribute key="defense" value="8" />
+		<attribute key="range" value="3" />
 		<attribute key="skillfist" value="1" />
 		<attribute key="weight" value="1800" />
 		<attribute key="script" value="moveevent;weapon">

@@ -989,7 +989,8 @@ function Player.canStartTask(self, name, table)
 	if self:getStorageValue(REPEATSTORAGE_BASE + id) >= repeatTimes or v.norepeatable and self:getStorageValue(REPEATSTORAGE_BASE + id) > 0 then
 		return false
 	end
-	if v.level and self:getLevel() >= v.level[1] and self:getLevel() <= v.level[2] then
+	-- if v.level and self:getLevel() >= v.level[1] and self:getLevel() <= v.level[2] then
+	if v.level and self:getLevel() >= v.level[1] then
 		if v.premium then
 			if self:isPremium() then
 				if v.rank then

@@ -397,6 +397,48 @@ local function checkZ(npc, player, message)
 		end
 	end
 end
+
+local function formatAvailableGrizzlyTasks(taskNames)
+	if #taskNames == 0 then
+		return ""
+	end
+
+	if #taskNames == 1 then
+		return taskNames[1]
+	end
+
+	local text = ""
+	for i = 1, #taskNames do
+		if i == 1 then
+			text = taskNames[i]
+		elseif i == #taskNames then
+			text = text .. " or " .. taskNames[i]
+		else
+			text = text .. ", " .. taskNames[i]
+		end
+	end
+
+	return text
+end
+
+local function getAvailableGrizzlyTaskNames(player)
+	local availableTasks = player:getTasks()
+	if not availableTasks or #availableTasks == 0 then
+		return {}
+	end
+
+	table.sort(availableTasks)
+	local names = {}
+	for i = 1, #availableTasks do
+		local task = tasks.GrizzlyAdams[availableTasks[i]]
+		if task then
+			names[#names + 1] = "{" .. (task.name or task.raceName):lower() .. "}"
+		end
+	end
+
+	return names
+end
+
 local function creatureSayCallback(npc, creature, type, message)
 	local player = Player(creature)
 	local playerId = player:getId()
@@ -562,53 +604,30 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:setTopic(playerId, 10)
 			return true
 		end
-		if player:getLevel() < 30 then
-			if player:getStorageValue(POINTSSTORAGE) >= 40 then
-				npcHandler:say({
-					"You may not advance in your rank anymore until you've levelled up. But you can accept tasks without getting Paw & Fur points, just for an experience reward and the possibility to fight a boss from the range lower than level 30. ...",
-					"You can try {crocodiles}, {badgers}, {tarantulas}, {carniphilas}, {stone golems}, {mammoths}, {gnarlhounds}, ...",
-					"as well as {terramites}, {apes}, {thornback tortoises} and {gargoyles}.",
-				}, npc, creature)
-			else
-				npcHandler:say("Alright, what would you like to hunt? {Crocodiles}, {badgers}, {tarantulas}, {carniphilas}, {stone golems}, {mammoths}, {gnarlhounds}, {terramites}, {apes}, {thornback tortoises} or {gargoyles}.", npc, creature)
-			end
-		elseif player:getLevel() >= 30 and player:getLevel() < 50 then
-			if player:getStorageValue(POINTSSTORAGE) >= 70 then
-				npcHandler:say({
-					"You may not advance in your rank anymore until you've levelled up. But you can accept tasks without getting Paw & Fur points, just for an experience reward and the possibility to fight a boss from the range lower than level 80. ...",
-					"You can try {ice golems}, {quara scouts}, {mutated rats}, {ancient scarabs}, {wyverns}, {lancer beetles}, {wailing widows}, ...",
-					"as well as {killer caimans}, {bonebeasts}, {crystal spiders} and {mutated tigers}.",
-				}, npc, creature)
-			else
-				npcHandler:say({
-					"Alright, what would you like to hunt? {Ice golems}, {quara scouts}, {mutated rats}, {ancient scarabs}, {wyverns}, {lancer beetles}, ...",
-					"or {wailing widows}, {killer caimans}, {bonebeasts}, {crystal spiders} or {mutated tigers}.",
-				}, npc, creature)
-			end
-		elseif player:getLevel() >= 50 and player:getLevel() < 80 then
-			if player:getStorageValue(POINTSSTORAGE) >= 100 then
-				npcHandler:say({
-					"You may not advance in your rank anymore until you've levelled up. But you can accept tasks without getting Paw & Fur points, just for an experience reward and the possibility to fight a boss from the range lower than level 80. ...",
-					"You can try {underwater quara}, {giant spiders}, {werewolves}, {nightmares}, {hellspawns}, {high class lizards}, {stampors}, ...",
-					"as well as {brimstone bugs} and {mutated bats}.",
-				}, npc, creature)
-			else
-				npcHandler:say({
-					"Alright, what would you like to hunt? {Underwater quara}, {giant spiders}, {werewolves}, {nightmares}, {hellspawns}, ...",
-					"as well as {high class lizards}, {stampors}, {brimstone bugs}, {mutated bats}.",
-				}, npc, creature)
-			end
-		elseif player:getLevel() >= 80 and player:getStorageValue(POINTSSTORAGE) < 100 then
+		local availableTaskNames = getAvailableGrizzlyTaskNames(player)
+		local availableTasksText = formatAvailableGrizzlyTasks(availableTaskNames)
+		if availableTasksText == "" then
+			npcHandler:say("You don't have any available tasks right now. Finish your current hunts or level up for new options.", npc, creature)
+			npcHandler:setTopic(playerId, 0)
+			return true
+		end
+
+		if
+			(player:getStorageValue(POINTSSTORAGE) >= 40 and player:getLevel() < 50)
+			or (player:getStorageValue(POINTSSTORAGE) >= 70 and player:getLevel() < 80)
+			or (player:getStorageValue(POINTSSTORAGE) >= 100 and player:getLevel() < 130)
+		then
 			npcHandler:say({
-				"Alright, what would you like to hunt? You can try {hydras}, {serpent spawns}, {medusae}, {behemoths}, {sea serpents}, ...",
-				"as well as {hellhounds}, {ghastly dragons}, {undead dragons}, {draken} and {destroyers}.",
+				"You may not advance in your rank anymore until you've levelled up. But you can accept tasks without getting Paw & Fur points, just for an experience reward and the possibility to fight a boss from your level range. ...",
+				"You can try " .. availableTasksText .. ".",
 			}, npc, creature)
-		else
+		elseif player:getLevel() >= 130 and player:getStorageValue(POINTSSTORAGE) >= 100 then
 			npcHandler:say({
 				"Alright, what would you like to hunt? Be aware you won't gain any paw and fur points as you already achieved the highest rank, but you'll get an experience reward and can face bosses. ...",
-				"You can try {hydras}, {serpent spawns}, {medusae}, {behemoths}, {sea serpents}, ...",
-				"as well as {hellhounds}, {ghastly dragons}, {undead dragons}, {draken} and {destroyers} or maybe {demons}.",
+				"You can try " .. availableTasksText .. ".",
 			}, npc, creature)
+		else
+			npcHandler:say("Alright, what would you like to hunt? " .. availableTasksText .. ".", npc, creature)
 		end
 		npcHandler:setTopic(playerId, 0)
 	elseif message ~= "" and player:canStartTask(message) then

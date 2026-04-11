@@ -115,7 +115,7 @@ spell:vocation("druid;true", "elder druid;true", "knight;true", "elite knight;tr
 spell:id(20)
 spell:cooldown(2 * 1000)
 spell:groupCooldown(2 * 1000)
-spell:level(25)
+spell:level(1)
 spell:mana(20)
 spell:isAggressive(false)
 spell:needLearn(false)

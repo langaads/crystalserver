@@ -158,6 +158,7 @@ local function createRebirthSkillKeyword(skillName, displayName)
 end
 
 -- Create keywords for all skills
+createRebirthSkillKeyword("fisting", "fisting")
 createRebirthSkillKeyword("sword", "sword")
 createRebirthSkillKeyword("club", "club")
 createRebirthSkillKeyword("axe", "axe")
@@ -229,7 +230,7 @@ rebirthKeyword:addChildKeyword(
 		npcHandler = npcHandler,
 		text = {
 			"Excellent! Now, which skill would you like to master? Choose wisely: ...",
-			"Say {sword}, {club}, {axe}, {distance}, {shielding}, {fishing}, or {magiclevel}.",
+			"Say {fisting}, {sword}, {club}, {axe}, {distance}, {shielding}, {fishing}, or {magiclevel}.",
 		},
 		reset = false,
 		ungreet = false,
