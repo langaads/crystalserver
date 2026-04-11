@@ -716,7 +716,6 @@ bool Creature::dropCorpse(const std::shared_ptr<Creature> &lastHitCreature, cons
 			const auto &corpseContainer = corpse->getContainer();
 			if (corpseContainer && player && !disallowedCorpses) {
 				const auto &monster = getMonster();
-				const bool isBoss = monster && monster->isRewardBoss();
 				if (monster && !monster->isRewardBoss()) {
 					auto collorMessage = player->getProtocolVersion() > 1200;
 					auto suffix = corpseContainer->getAttribute<std::string>(ItemAttribute_t::LOOTMESSAGE_SUFFIX);
@@ -734,18 +733,17 @@ bool Creature::dropCorpse(const std::shared_ptr<Creature> &lastHitCreature, cons
 				fpp.clearSight = true;
 				fpp.maxSearchDist = 0;
 
-					std::vector<Direction> dirList;
-					auto isReachable = g_game().map.getPathMatching(autoLootPlayer->getPosition(), dirList, FrozenPathingConditionCall(corpse->getPosition()), fpp);
+				std::vector<Direction> dirList;
+				auto isReachable = g_game().map.getPathMatching(player->getPosition(), dirList, FrozenPathingConditionCall(corpse->getPosition()), fpp);
 
-					if (autoLootPlayer->checkAutoLoot(isBoss) && isReachable) {
-						g_dispatcher().addEvent([autoLootPlayer, corpseContainer, corpsePosition = corpse->getPosition()] {
-							g_game().playerQuickLootCorpse(autoLootPlayer, corpseContainer, corpsePosition);
-						},
-						                        "Game::playerQuickLootCorpse");
-					}
-
-					corpse->sendUpdateToClient(autoLootPlayer);
+				if (player->checkAutoLoot(monster->isRewardBoss()) && isReachable) {
+					g_dispatcher().addEvent([player, corpseContainer, corpsePosition = corpse->getPosition()] {
+						g_game().playerQuickLootCorpse(player, corpseContainer, corpsePosition);
+					},
+					                        "Game::playerQuickLootCorpse");
 				}
+
+				corpse->sendUpdateToClient(player);
 			}
 		}
 
