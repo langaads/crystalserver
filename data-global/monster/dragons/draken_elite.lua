@@ -96,7 +96,7 @@ monster.loot = {
 	{ name = "elite draken mail", chance = 110 },
 	{ name = "blade of corruption", chance = 60 },
 	{ name = "snake god's wristguard", chance = 40 },
-	{ name = "cobra crown", chance = 0 },
+	{ name = "cobra crown", chance = 10 },
 }
 
 monster.attacks = {

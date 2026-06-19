@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="Battlemaster Zunzu activity near Farmine." />
 	<areaspawn delay="1000" fromx="33201" fromy="31238" fromz="7" tox="33272" toy="31240" toz="7">
 		<monster name="Battlemaster Zunzu" amount="1" />
 	</areaspawn>

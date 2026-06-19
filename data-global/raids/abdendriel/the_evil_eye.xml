@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="The Evil Eye activity near Ab&apos;Dendriel." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="The Evil Eye" x="32803" y="31590" z="14"/>
 </raid>

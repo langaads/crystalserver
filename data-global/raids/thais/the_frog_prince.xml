@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="The Frog Prince activity near Thais." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="The Frog Prince" x="32283" y="32129" z="7"/>
 </raid>

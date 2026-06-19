@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="Xenia activity near Venore." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="Xenia" x="32891" y="31886" z="8"/>
 </raid>

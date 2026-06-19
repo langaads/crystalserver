@@ -75,6 +75,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	if MsgContains(message, "recruit") then
 		if player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.QuestLine) == 5 then
 			npcHandler:say("Yes... Yes... <sigh>. We already talked about that. I can't remember if you have already tried the {test}, so lets get going.", npc, creature)
+			npcHandler:setTopic(playerId, 0)
 		elseif player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.QuestLine) == 3 then
 			npcHandler:say("We are hiring people to fight in our so called Bigfoot company against the foes of gnomekind. Are you interested in joining?", npc, creature)
 			npcHandler:setTopic(playerId, 1)
@@ -83,7 +84,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		-- TEST
 	elseif MsgContains(message, "test") then
 		if player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.QuestLine) == 5 then
-			if npcHandler:getTopic(playerId) < 1 then
+			if npcHandler:getTopic(playerId) == 0 then
 				player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.Test, 0)
 				npcHandler:say({
 					"Imagine, during your travels you come upon a rare and unknown mushroom. Would you {A}) note down its specifics and location and look for a gnome to take care of it. ...",

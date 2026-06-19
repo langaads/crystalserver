@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="Insect Swarm activity near Farmine." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="Insect Swarm" x="33092" y="31384" z="8"/>
 	<singlespawn delay="1000" name="Insect Swarm" x="33094" y="31384" z="8"/>

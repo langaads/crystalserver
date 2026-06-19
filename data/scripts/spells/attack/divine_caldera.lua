@@ -14,6 +14,10 @@ combat:setCallback(CALLBACK_PARAM_LEVELMAGICVALUE, "onGetFormulaValues")
 local spell = Spell("instant")
 
 function spell.onCastSpell(creature, var)
+	local target = creature:getTarget()
+	if target then
+		var = Variant(target)
+	end
 	return combat:execute(creature, var)
 end
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="The Blightfather activity near Farmine." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="The Blightfather" x="33302" y="31154" z="7"/>
 </raid>

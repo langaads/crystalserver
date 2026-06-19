@@ -30,6 +30,36 @@ function createHirelingType(HirelingName)
 		floorchange = false,
 	}
 
+	local foodTable = {
+		{ itemName = "Banana Chocolate Shake", clientId = 9083, buy = 10000 },
+		{ itemName = "Blessed Steak", clientId = 9086, buy = 10000 },
+		{ itemName = "Blueberry Cupcake", clientId = 28484, buy = 10000 },
+		{ itemName = "Carrion Casserole", clientId = 29414, buy = 5000 },
+		{ itemName = "Carrot Cake", clientId = 9087, buy = 40000 },
+		{ itemName = "Carrot Pie", clientId = 29409, buy = 20000 },
+		{ itemName = "Chilli Con Carniphila", clientId = 29412, buy = 10000 },
+		{ itemName = "Coconut Shrimp Bake", clientId = 11584, buy = 10000 },
+		{ itemName = "Consecrated Beef", clientId = 29415, buy = 5000 },
+		{ itemName = "Delicatessen Salad", clientId = 29411, buy = 20000 },
+		{ itemName = "Demonic Candy Ball", clientId = 11587, buy = 20000 },
+		{ itemName = "Filled Jalapeño Peppers", clientId = 9085, buy = 20000 },
+		{ itemName = "Hydra Tongue Salad", clientId = 9080, buy = 10000 },
+		{ itemName = "Lemon Cupcake", clientId = 28486, buy = 40000 },
+		{ itemName = "Northern Fishburger", clientId = 9088, buy = 10000 },
+		{ itemName = "Overcooked Noodles", clientId = 29416, buy = 5000 },
+		{ itemName = "Pot of Blackjack", clientId = 11586, buy = 5000 },
+		{ itemName = "Roasted Dragon Wings", clientId = 9081, buy = 20000 },
+		{ itemName = "Roasted Wyvern Wings", clientId = 29408, buy = 10000 },
+		{ itemName = "Rotworm Stew", clientId = 9079, buy = 10000 },
+		{ itemName = "Strawberry Cupcake", clientId = 28485, buy = 10000 },
+		{ itemName = "Svargrond Salmon Filet", clientId = 29413, buy = 5000 },
+		{ itemName = "Sweet Mangonaise Elixir", clientId = 11588, buy = 20000 },
+		{ itemName = "Tropical Fried Terrorbird", clientId = 9082, buy = 40000 },
+		{ itemName = "Tropical Marinated Tiger", clientId = 29410, buy = 20000 },
+		{ itemName = "Veggie Casserole", clientId = 9084, buy = 40000 },
+		{ itemName = "Zaoan Sauce", clientId = 50334, buy = 20000 }
+	}
+
 	local itemsTable = {
 		["various"] = {
 			{ itemName = "blue footboard", clientId = 32482, buy = 40 },
@@ -1723,6 +1753,15 @@ function createHirelingType(HirelingName)
 				{ itemId = 9654, count = 5 }, -- war crystal
 			},
 		},
+		["punch"] = {
+			text = "skill fist",
+			moneyRequired = 12250,
+			itemList = {
+				{ itemId = 10281, count = 25 }, -- tarantula egg
+				{ itemId = 11489, count = 20 }, -- mantassin tail
+				{ itemId = 40529, count = 15 }, -- gold-brocaded cloth
+			},
+		},
 		-- Additional attributes packages
 		["featherweight"] = {
 			text = "capacity increase",
@@ -2169,8 +2208,8 @@ function createHirelingType(HirelingName)
 
 			npcHandler:say("You have successfully completed your purchase of the items.", npc, player)
 			playerImbuementData[playerId] = nil
-			npcHandler:setTopic(playerId, TOPIC.NONE)
-			npcHandler:say(imbuementPackages, npc, creature)
+			npcHandler:setTopic(playerId, TOPIC.IMBUEMENT_START)
+			-- npcHandler:say(imbuementPackages, npc, creature)
 		end
 
 		-- roleplay
@@ -2198,8 +2237,10 @@ function createHirelingType(HirelingName)
 			elseif MsgContains(message, "food") then
 				local bankerSkillName = HIRELING_SKILLS.COOKING[2]
 				if hireling:hasSkill(bankerSkillName) then
-					npcHandler:setTopic(playerId, TOPIC.FOOD)
-					npcHandler:say(GREETINGS.FOOD, npc, creature)
+					-- npcHandler:setTopic(playerId, TOPIC.FOOD)
+					-- npcHandler:say(GREETINGS.FOOD, npc, creature)
+					npcHandler:say("Here are the items i can cook for you.", npc, creature)
+					npc:openShopWindowTable(player, foodTable)
 				else
 					sendSkillNotLearned(npc, creature, bankerSkillName)
 				end
@@ -2246,8 +2287,12 @@ function createHirelingType(HirelingName)
 			end
 		elseif npcHandler:getTopic(playerId) == TOPIC.BANK then
 			enableBankSystem[playerId] = true
-		elseif npcHandler:getTopic(playerId) == TOPIC.FOOD or npcHandler:getTopic(playerId) == TOPIC_FOOD.SKILL_CHOOSE or npcHandler:getTopic(playerId) == TOPIC_FOOD.SPECIFIC then
-			handleFoodActions(npc, creature, message)
+		-- elseif npcHandler:getTopic(playerId) == TOPIC.FOOD then
+		-- 	npcHandler:say("Here are the items i can cook for you.", npc, creature)
+		-- 	npc:openShopWindowTable(player, itemsTable["food"])
+		-- 	return
+		-- elseif npcHandler:getTopic(playerId) == TOPIC.FOOD or npcHandler:getTopic(playerId) == TOPIC_FOOD.SKILL_CHOOSE or npcHandler:getTopic(playerId) == TOPIC_FOOD.SPECIFIC then
+		-- 	handleFoodActions(npc, creature, message)
 		elseif npcHandler:getTopic(playerId) == TOPIC.GOODS then
 			-- Ensures players cannot access other shop categories
 			if not hireling:hasSkill(HIRELING_SKILLS.TRADER[2]) then

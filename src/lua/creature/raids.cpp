@@ -124,21 +124,34 @@ void Raids::checkRaids() {
 	}
 	if (!getRunning()) {
 		const uint64_t now = OTSYS_TIME();
+		if (!raidList.empty()) {
+			auto it = raidList.begin();
+			std::advance(it, static_cast<int32_t>(uniform_random(0, static_cast<int32_t>(raidList.size() - 1))));
 
-		for (auto it = raidList.begin(), end = raidList.end(); it != end; ++it) {
-			const auto &raid = *it;
-			if (!raid->canBeRepeated() && raid->isExecuted()) {
-				continue;
-			}
+			for (size_t checked = 0, total = raidList.size(); checked < total; ++checked) {
+				const auto &raid = *it;
+				if (!raid->canBeRepeated() && raid->isExecuted()) {
+					++it;
+					if (it == raidList.end()) {
+						it = raidList.begin();
+					}
+					continue;
+				}
 
-			if (now >= (getLastRaidEnd() + raid->getMargin())) {
-				const auto roll = static_cast<uint32_t>(uniform_random(0, MAX_RAND_RANGE));
-				const auto required = static_cast<uint32_t>(MAX_RAND_RANGE * raid->getInterval()) / CHECK_RAIDS_INTERVAL;
-				const auto shouldStart = required >= roll;
-				if (shouldStart) {
-					setRunning(raid);
-					raid->startRaid();
-					break;
+				if (now >= (getLastRaidEnd() + raid->getMargin())) {
+					const auto roll = static_cast<uint32_t>(uniform_random(0, MAX_RAND_RANGE));
+					const auto required = static_cast<uint32_t>((static_cast<uint64_t>(MAX_RAND_RANGE) * CHECK_RAIDS_INTERVAL) / raid->getInterval());
+					const auto shouldStart = required >= roll;
+					if (shouldStart) {
+						setRunning(raid);
+						raid->startRaid();
+						break;
+					}
+				}
+
+				++it;
+				if (it == raidList.end()) {
+					it = raidList.begin();
 				}
 			}
 		}

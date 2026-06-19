@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="Water Buffalo activity near Venore." />
 	<areaspawn delay="1000" fromx="32857" fromy="32135" fromz="7" tox="32865" toy="32142" toz="7">
 		<monster name="Water Buffalo" amount="4"/>
 	</areaspawn>

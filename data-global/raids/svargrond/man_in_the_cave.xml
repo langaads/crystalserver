@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="Man In The Cave activity near Svargrond." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="Man In The Cave" x="32137" y="31147" z="2"/>
 </raid>

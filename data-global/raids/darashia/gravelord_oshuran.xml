@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="Gravelord Oshuran activity near Darashia." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="Gravelord Oshuran" x="32980" y="32393" z="12"/>
 </raid>

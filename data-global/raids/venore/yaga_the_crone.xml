@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="Yaga The Crone activity near Venore." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="Yaga The Crone" x="32712" y="32008" z="11"/>
 </raid>

@@ -6,7 +6,7 @@ combat:setParameter(COMBAT_PARAM_AGGRESSIVE, 0)
 local condition = Condition(CONDITION_REGENERATION)
 condition:setParameter(CONDITION_PARAM_SUBID, 1)
 condition:setParameter(CONDITION_PARAM_BUFF_SPELL, 1)
-condition:setParameter(CONDITION_PARAM_TICKS, 2 * 60 * 1000)
+condition:setParameter(CONDITION_PARAM_TICKS, 5 * 60 * 1000)
 condition:setParameter(CONDITION_PARAM_HEALTHGAIN, 20)
 condition:setParameter(CONDITION_PARAM_HEALTHTICKS, 2000)
 
@@ -16,6 +16,8 @@ local spell = Spell("instant")
 
 function spell.onCastSpell(creature, var)
 	local position = creature:getPosition()
+	local level = creature:getLevel()
+	local magicLevel = creature:getMagicLevel()
 
 	local party = creature:getParty()
 	if not party then
@@ -61,6 +63,13 @@ function spell.onCastSpell(creature, var)
 
 	creature:addMana(-(mana - baseMana), false)
 	creature:addManaSpent((mana - baseMana))
+
+	local min = (level * 0.2 + magicLevel * 1.4) + 8
+	local max = (level * 0.2 + magicLevel * 1.795) + 11
+	local reducedMin = math.floor(min * 0.5)
+	local reducedMax = math.floor(max * 0.5)
+	local healthGain = math.random(reducedMin, reducedMax)
+	condition:setParameter(CONDITION_PARAM_HEALTHGAIN, healthGain)
 
 	for _, targetPlayer in ipairs(affectedList) do
 		targetPlayer:addCondition(condition)

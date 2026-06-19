@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="Raxias activity near Feyrist." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="Raxias" x="33462" y="32158" z="7"/>
 </raid>

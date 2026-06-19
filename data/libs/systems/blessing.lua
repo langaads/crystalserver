@@ -82,12 +82,17 @@ end
 Blessings.PlayerDeath = function(player, corpse, killer)
 	local hasAol = (player:getSlotItem(CONST_SLOT_NECKLACE) and player:getSlotItem(CONST_SLOT_NECKLACE):getId() == ITEM_AMULETOFLOSS)
 	local hasSkull = table.contains({ SKULL_RED, SKULL_BLACK }, player:getSkull())
-	local currBlessCount = player:getBlessings()
+	local lossBlessCount = 0
+	for _, bless in pairs(Blessings.All) do
+		if bless.losscount and player:hasBlessing(bless.id) then
+			lossBlessCount = lossBlessCount + 1
+		end
+	end
 
 	if hasSkull then
 		Blessings.DropLoot(player, corpse, 100, true)
-	elseif #currBlessCount < 5 and not hasAol then
-		local equipLossChance = Blessings.LossPercent[#currBlessCount].item
+	elseif lossBlessCount < 5 and not hasAol then
+		local equipLossChance = Blessings.LossPercent[lossBlessCount].item
 		Blessings.DropLoot(player, corpse, equipLossChance)
 	end
 
@@ -308,7 +313,7 @@ function Player.getBlessings(self, filter, hasblessingFilter)
 	end
 
 	for k, v in pairs(Blessings.All) do
-		if filter(v) and hasblessingFilter(self, k) then
+		if filter(v) and hasblessingFilter(self, v.id) then
 			table.insert(blessings, v)
 		end
 	end

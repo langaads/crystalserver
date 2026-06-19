@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="The Welter activity near Port Hope." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="The Welter" x="33026" y="32660" z="5" />
 </raid>

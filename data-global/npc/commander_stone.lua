@@ -69,75 +69,67 @@ local function creatureSayCallback(npc, creature, type, message)
 
 		-- Crystal Kepper
 	elseif MsgContains(message, "keeper") then
-		if player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank) < 30 then
-			if player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionCrystalKeeper) < 1 and player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.CrystalKeeperTimout) < os.time() then
-				npcHandler:say("You will have to repair some damaged crystals. Go into the Crystal grounds and repair them, using this harmonic crystal. Repair five of them and return to me. ", npc, creature)
-				player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionCrystalKeeper, 1)
-				player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.RepairedCrystalCount, 0)
-				player:addItem(15703, 1) --- taking missions
-			elseif player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.CrystalKeeperTimout) > os.time() then -- trying to take mission while in cooldown
-				npcHandler:say("Sorry, you will have to wait before you can undertake this mission again.", npc, creature)
-			elseif player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionCrystalKeeper) > 0 then -- reporting mission
-				if player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.RepairedCrystalCount) >= 5 then -- can report missions
-					player:removeItem(15703, 1)
-					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank, player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank) + 5)
-					player:addItem(16128, 1)
-					player:addItem(15698, 1)
-					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionCrystalKeeper, 0)
-					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.CrystalKeeperTimout, os.time() + configManager.getNumber(configKeys.BOSS_DEFAULT_TIME_TO_FIGHT_AGAIN))
-					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.RepairedCrystalCount, -1)
-					player:addAchievement("Crystal Keeper")
-					player:checkGnomeRank()
-					npcHandler:say("You did well. That will help us a lot. Take your {token} and this gnomish supply package as a reward. ", npc, creature)
-					npcHandler:setTopic(playerId, 0)
-				else -- haven't finished
-					if npcHandler:getTopic(playerId) >= 1 then
-						npcHandler:say("You are not done yet.", npc, creature) -- is reporting
-					else
-						npcHandler:say("You already have accepted this mission. Don't forget to {report} to me when you are done.", npc, creature) -- se nao tiver reportando
-					end
-					npcHandler:setTopic(playerId, 0)
+		if player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionCrystalKeeper) < 1 and player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.CrystalKeeperTimout) < os.time() then
+			npcHandler:say("You will have to repair some damaged crystals. Go into the Crystal grounds and repair them, using this harmonic crystal. Repair five of them and return to me. ", npc, creature)
+			player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionCrystalKeeper, 1)
+			player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.RepairedCrystalCount, 0)
+			player:addItem(15703, 1) --- taking missions
+		elseif player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.CrystalKeeperTimout) > os.time() then -- trying to take mission while in cooldown
+			npcHandler:say("Sorry, you will have to wait before you can undertake this mission again.", npc, creature)
+		elseif player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionCrystalKeeper) > 0 then -- reporting mission
+			if player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.RepairedCrystalCount) >= 5 then -- can report missions
+				player:removeItem(15703, 1)
+				player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank, player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank) + 50)
+				player:addItem(16128, 1)
+				player:addItem(15698, 1)
+				player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionCrystalKeeper, 0)
+				player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.CrystalKeeperTimout, os.time() + configManager.getNumber(configKeys.BOSS_DEFAULT_TIME_TO_FIGHT_AGAIN))
+				player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.RepairedCrystalCount, -1)
+				player:addAchievement("Crystal Keeper")
+				player:checkGnomeRank()
+				npcHandler:say("You did well. That will help us a lot. Take your {token} and this gnomish supply package as a reward. ", npc, creature)
+				npcHandler:setTopic(playerId, 0)
+			else -- haven't finished
+				if npcHandler:getTopic(playerId) >= 1 then
+					npcHandler:say("You are not done yet.", npc, creature) -- is reporting
+				else
+					npcHandler:say("You already have accepted this mission. Don't forget to {report} to me when you are done.", npc, creature) -- se nao tiver reportando
 				end
+				npcHandler:setTopic(playerId, 0)
 			end
-		else
-			npcHandler:say("Sorry, you do have not have the required rank to undertake this mission.", npc, creature)
 		end
 		-- Crystal Keeper
 
 		-- Raiders of the Lost Spark
 	elseif MsgContains(message, "spark") then
-		if player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank) < 30 then
-			if player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionRaidersOfTheLostSpark) < 1 and player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.RaidersOfTheLostSparkTimeout) < os.time() then
-				npcHandler:say({ "Take this extractor and drive it into a body of a slain crystal crusher. This will charge your own body with energy sparks. Charge it with seven sparks and return to me. ...", "Don't worry. The gnomes assured me you'd be save. That is if nothing strange or unusual occurs! " }, npc, creature)
-				player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionRaidersOfTheLostSpark, 1)
-				player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.ExtractedCount, 0)
-				player:addItem(15696, 1) --- taking missions
-			elseif player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.RaidersOfTheLostSparkTimeout) > os.time() then -- trying to take mission while in cooldown
-				npcHandler:say("Sorry, you will have to wait before you can undertake this mission again.", npc, creature)
-			elseif player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionRaidersOfTheLostSpark) > 0 then -- reporting mission
-				if player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.ExtractedCount) >= 7 then -- can report missions
-					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank, player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank) + 5)
-					player:removeItem(15696, 1)
-					player:addItem(16128, 1)
-					player:addItem(15698, 1)
-					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionRaidersOfTheLostSpark, 0)
-					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.ExtractedCount, -1)
-					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.RaidersOfTheLostSparkTimeout, os.time() + configManager.getNumber(configKeys.BOSS_DEFAULT_TIME_TO_FIGHT_AGAIN))
-					player:addAchievement("Call Me Sparky")
-					player:checkGnomeRank()
-					npcHandler:say("You did well. That will help us a lot. Take your {token} and this gnomish supply package as a reward. ", npc, creature)
-					npcHandler:setTopic(playerId, 0)
-				else -- haven't finished
-					if npcHandler:getTopic(playerId) >= 1 then
-						npcHandler:say("You did not draw enough energy from Crystal Crushers or you have not asked for this task.", npc, creature) -- is reporting
-					else
-						npcHandler:say("You already have accepted this mission. Don't forget to {report} to me when you are done.", npc, creature) -- se nao tiver reportando
-					end
-					npcHandler:setTopic(playerId, 0)
+		if player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionRaidersOfTheLostSpark) < 1 and player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.RaidersOfTheLostSparkTimeout) < os.time() then
+			npcHandler:say({ "Take this extractor and drive it into a body of a slain crystal crusher. This will charge your own body with energy sparks. Charge it with seven sparks and return to me. ...", "Don't worry. The gnomes assured me you'd be save. That is if nothing strange or unusual occurs! " }, npc, creature)
+			player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionRaidersOfTheLostSpark, 1)
+			player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.ExtractedCount, 0)
+			player:addItem(15696, 1) --- taking missions
+		elseif player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.RaidersOfTheLostSparkTimeout) > os.time() then -- trying to take mission while in cooldown
+			npcHandler:say("Sorry, you will have to wait before you can undertake this mission again.", npc, creature)
+		elseif player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionRaidersOfTheLostSpark) > 0 then -- reporting mission
+			if player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.ExtractedCount) >= 7 then -- can report missions
+				player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank, player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank) + 50)
+				player:removeItem(15696, 1)
+				player:addItem(16128, 1)
+				player:addItem(15698, 1)
+				player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionRaidersOfTheLostSpark, 0)
+				player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.ExtractedCount, -1)
+				player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.RaidersOfTheLostSparkTimeout, os.time() + configManager.getNumber(configKeys.BOSS_DEFAULT_TIME_TO_FIGHT_AGAIN))
+				player:addAchievement("Call Me Sparky")
+				player:checkGnomeRank()
+				npcHandler:say("You did well. That will help us a lot. Take your {token} and this gnomish supply package as a reward. ", npc, creature)
+				npcHandler:setTopic(playerId, 0)
+			else -- haven't finished
+				if npcHandler:getTopic(playerId) >= 1 then
+					npcHandler:say("You did not draw enough energy from Crystal Crushers or you have not asked for this task.", npc, creature) -- is reporting
+				else
+					npcHandler:say("You already have accepted this mission. Don't forget to {report} to me when you are done.", npc, creature) -- se nao tiver reportando
 				end
+				npcHandler:setTopic(playerId, 0)
 			end
-		else
-			npcHandler:say("Sorry, you do have not have the required rank to undertake this mission.", npc, creature)
 		end
 		-- Raiders of the Lost Spark
 
@@ -152,7 +144,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				npcHandler:say("Sorry, you will have to wait before you can undertake this mission again.", npc, creature)
 			elseif player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionExterminators) > 0 then -- reporting mission
 				if player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.ExterminatedCount) >= 10 then -- can report missions
-					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank, player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank) + 5)
+					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank, player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank) + 50)
 					player:addItem(16128, 1)
 					player:addItem(15698, 1)
 					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionExterminators, 0)
@@ -194,7 +186,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			elseif player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionMushroomDigger) > 0 then -- reporting mission
 				if player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.MushroomCount) >= 3 then -- can report missions
 					player:removeItem(15828, 1)
-					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank, player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank) + 5)
+					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank, player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank) + 50)
 					player:addItem(16128, 1)
 					player:addItem(15698, 1)
 					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionMushroomDigger, 0)

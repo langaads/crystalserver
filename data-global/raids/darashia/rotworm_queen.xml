@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="Rotworm Queen activity near Darashia." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="Rotworm Queen" x="33062" y="32371" z="9"/>
 </raid>

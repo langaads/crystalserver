@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="Captain Jones activity near Darashia." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="Captain Jones" x="33321" y="32183" z="7"/>
 </raid>

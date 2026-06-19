@@ -48,7 +48,7 @@ function Rebirth.calculateSkillTries(player, skill)
 		-- Aproximação: 1 magic level = ~400.000 mana spent em vocações normais
 		-- Vamos converter exp em mana spent de forma proporcional
 		-- 1 exp = aproximadamente 0.1 mana spent
-		return math.floor(expToConvert * 2)
+		return math.floor(expToConvert * 0.5)
 	else
 		-- Para skills de combate, cada skill try tem um custo que aumenta com o level
 		-- Vamos converter a exp diretamente em tries

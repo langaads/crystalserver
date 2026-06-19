@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="Grorlam activity near Thais." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="Grorlam" x="32380" y="32065" z="12"/>
 </raid>

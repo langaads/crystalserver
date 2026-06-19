@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="The Big Bad One activity near Edron." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="The Big Bad One" x="33166" y="31680" z="7"/>
 </raid>

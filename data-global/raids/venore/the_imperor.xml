@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="The Imperor activity near Venore." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="The Imperor" x="32909" y="32213" z="15"/>
 </raid>

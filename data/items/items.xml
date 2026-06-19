@@ -402,7 +402,7 @@
 	</item>
 	<item id="236" article="a" name="strong health potion">
 		<attribute key="primarytype" value="liquids" />
-		<attribute key="description" value="This potion can only be consumed by knights, monks and paladins of level 50 or higher." />
+		<attribute key="description" value="This potion can only be consumed by players of level 50 or higher." />
 		<attribute key="weight" value="290" />
 	</item>
 	<item id="237" article="a" name="strong mana potion">
@@ -413,12 +413,12 @@
 	<item id="238" article="a" name="great mana potion">
 		<attribute key="primarytype" value="liquids" />
 		<attribute key="weight" value="310" />
-		<attribute key="description" value="This potion can only be consumed by monks, paladins, sorcerers and druids of level 80 or higher." />
+		<attribute key="description" value="This potion can only be consumed by players of level 80 or higher." />
 	</item>
 	<item id="239" article="a" name="great health potion">
 		<attribute key="primarytype" value="liquids" />
 		<attribute key="weight" value="310" />
-		<attribute key="description" value="This potion can only be consumed by knights of level 80 or higher." />
+		<attribute key="description" value="This potion can only be consumed by players of level 80 or higher." />
 	</item>
 	<item fromid="240" toid="252" name="linen">
 		<attribute key="primarytype" value="walls" />
@@ -7042,7 +7042,7 @@
 		<attribute key="description" value="Small stones are flying from its tip" />
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="smallearth" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="2500" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="26" />
@@ -7060,7 +7060,7 @@
 		<attribute key="description" value="It seems to twitch and quiver as if trying to escape your grip" />
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="smallearth" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="1900" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="6" />
@@ -7078,7 +7078,7 @@
 		<attribute key="description" value="It grants you the power of striking your foes with furious hailstorms" />
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="smallice" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="2700" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="33" />
@@ -7100,7 +7100,7 @@
 		<attribute key="description" value="It was brought up from hell to deliver death" />
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="death" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="2300" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="19" />
@@ -7118,7 +7118,7 @@
 		<attribute key="description" value="Icecold rays of moonlight shimmer on its tip" />
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="smallice" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="2100" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="13" />
@@ -7135,7 +7135,7 @@
 		<attribute key="description" value="It unleashes the very fires of hell" />
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="fire" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="2700" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="33" />
@@ -7152,7 +7152,7 @@
 		<attribute key="description" value="It is half-rotten itself and reeks terribly" />
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="death" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="2300" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="19" />
@@ -7169,7 +7169,7 @@
 		<attribute key="description" value="The energy of a radiant star is trapped inside its globe" />
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="energy" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="2500" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="26" />
@@ -7186,7 +7186,7 @@
 		<attribute key="description" value="Surges of energy rush through the tip of this wand" />
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="energy" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="1900" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="6" />
@@ -7203,7 +7203,7 @@
 		<attribute key="description" value="Legends say that this wand holds the soul of a young dragon" />
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="fire" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="2300" />
 		<attribute key="imbuementslot" value="2">
 			<attribute key="life leech" value="3" />
@@ -9703,6 +9703,9 @@
 			<attribute key="slot" value="legs" />
 			<attribute key="vocation" value="Knight;true, Paladin;true, Elite Knight, Royal Paladin" />
 		</attribute>
+		<attribute key="imbuementslot" value="1">
+			<attribute key="increase speed" value="3" />
+		</attribute>
 	</item>
 	<item id="3365" article="a" name="golden helmet">
 		<attribute key="primarytype" value="helmets" />
@@ -9969,6 +9972,8 @@
 			<attribute key="skillboost club" value="3" />
 			<attribute key="skillboost shielding" value="3" />
 			<attribute key="skillboost distance" value="3" />
+			<attribute key="skillboost magic level" value="3" />
+			<attribute key="skillboost fist" value="3" />
 		</attribute>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="head" />
@@ -12144,6 +12149,7 @@
 		<attribute key="weight" value="2500" />
 		<attribute key="imbuementslot" value="1">
 			<attribute key="paralysis removal" value="3" />
+			<attribute key="increase speed" value="3" />
 		</attribute>
 		<attribute key="script" value="moveevent">
 			<attribute key="level" value="80" />
@@ -20862,7 +20868,7 @@
 	<item fromid="7630" toid="7641" name="earth" />
 	<item id="7642" article="a" name="great spirit potion">
 		<attribute key="primarytype" value="liquids" />
-		<attribute key="description" value="This potion can only be consumed by monks and paladins of level 80 or higher" />
+		<attribute key="description" value="This potion can only be consumed by players of level 80 or higher" />
 		<attribute key="weight" value="310" />
 	</item>
 	<item id="7643" article="an" name="ultimate health potion">
@@ -22183,7 +22189,7 @@
 		<attribute key="description" value="No one knows which hell this unholy rod comes from" />
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="death" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="2900" />
 		<attribute key="imbuementslot" value="2">
 			<attribute key="life leech" value="3" />
@@ -22206,7 +22212,7 @@
 		<attribute key="description" value="It was made by one of the shamans in Svargrond and symbolises an icy mammoth" />
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="smallice" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="2900" />
 		<attribute key="imbuementslot" value="2">
 			<attribute key="life leech" value="3" />
@@ -22229,7 +22235,7 @@
 		<attribute key="description" value="It is filled with the energy of growing plants" />
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="smallearth" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="2700" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="37" />
@@ -22263,7 +22269,7 @@
 		<attribute key="description" value="It is sparkling with universal energy" />
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="energy" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="2550" />
 		<attribute key="imbuementslot" value="2">
 			<attribute key="life leech" value="3" />
@@ -22285,7 +22291,7 @@
 		<attribute key="description" value="This wand holds the spirit and soul of a dragon lord" />
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="fire" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="2700" />
 		<attribute key="imbuementslot" value="2">
 			<attribute key="life leech" value="3" />
@@ -22307,7 +22313,7 @@
 		<attribute key="description" value="It is filled with the dark hatred and rage of a tormented demonic being" />
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="death" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="2850" />
 		<attribute key="imbuementslot" value="2">
 			<attribute key="life leech" value="3" />
@@ -23576,6 +23582,9 @@
 			<attribute key="level" value="80" />
 			<attribute key="slot" value="legs" />
 			<attribute key="vocation" value="Paladin;true, Royal Paladin" />
+		</attribute>
+		<attribute key="imbuementslot" value="1">
+			<attribute key="increase speed" value="3" />
 		</attribute>
 	</item>
 	<item id="8864" article="a" name="yalahari mask">
@@ -27254,6 +27263,9 @@
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="legs" />
 		</attribute>
+		<attribute key="imbuementslot" value="1">
+			<attribute key="increase speed" value="3" />
+		</attribute>
 	</item>
 	<item id="10388" article="a" name="drakinata">
 		<attribute key="primarytype" value="axe weapons" />
@@ -29097,6 +29109,15 @@
 			<attribute key="slot" value="armor" />
 			<attribute key="vocation" value="Knight;true, Elite Knight" />
 		</attribute>
+		<attribute key="imbuementslot" value="2">
+			<attribute key="life leech" value="3" />
+			<attribute key="elemental protection death" value="3" />
+			<attribute key="elemental protection earth" value="3" />
+			<attribute key="elemental protection fire" value="3" />
+			<attribute key="elemental protection ice" value="3" />
+			<attribute key="elemental protection energy" value="3" />
+			<attribute key="elemental protection holy" value="3" />
+		</attribute>
 	</item>
 	<item id="11687" article="a" name="royal scale robe">
 		<attribute key="primarytype" value="armors" />
@@ -29108,6 +29129,15 @@
 			<attribute key="level" value="100" />
 			<attribute key="slot" value="armor" />
 			<attribute key="vocation" value="Sorcerer;true, Druid;true, Master Sorcerer, Elder Druid" />
+		</attribute>
+		<attribute key="imbuementslot" value="2">
+			<attribute key="life leech" value="3" />
+			<attribute key="elemental protection death" value="3" />
+			<attribute key="elemental protection earth" value="3" />
+			<attribute key="elemental protection fire" value="3" />
+			<attribute key="elemental protection ice" value="3" />
+			<attribute key="elemental protection energy" value="3" />
+			<attribute key="elemental protection holy" value="3" />
 		</attribute>
 	</item>
 	<item id="11688" article="a" name="shield of corruption">
@@ -29137,7 +29167,7 @@
 		<attribute key="skilldist" value="1" />
 		<attribute key="armor" value="9" />
 		<attribute key="weight" value="4300" />
-		<attribute key="imbuementslot" value="1">
+		<attribute key="imbuementslot" value="2">
 			<attribute key="mana leech" value="3" />
 			<attribute key="skillboost axe" value="3" />
 			<attribute key="skillboost sword" value="3" />
@@ -30612,7 +30642,7 @@
 		<attribute key="description" value="This wand controls the rift between time and space" />
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="energy" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="2800" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="37" />
@@ -30926,7 +30956,7 @@
 		<attribute key="showduration" value="0" />
 		<attribute key="duration" value="604800" />
 		<attribute key="decayTo" value="0" />
-		<attribute key="range" value="4" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="3100" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="40" />
@@ -30993,7 +31023,7 @@
 		<attribute key="showduration" value="0" />
 		<attribute key="duration" value="604800" />
 		<attribute key="decayTo" value="0" />
-		<attribute key="range" value="4" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="3100" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="40" />
@@ -32088,7 +32118,9 @@
 		<attribute key="speed" value="-5" />
 		<attribute key="armor" value="3" />
 		<attribute key="weight" value="3700" />
-		<attribute key="imbuementslot" value="1" />
+		<attribute key="imbuementslot" value="1">
+			<attribute key="paralysis removal" value="3" />
+		</attribute>
 		<attribute key="script" value="moveevent">
 			<attribute key="level" value="150" />
 			<attribute key="slot" value="feet" />
@@ -34138,7 +34170,7 @@
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="energy" />
 		<attribute key="magiclevelpoints" value="1" />
-		<attribute key="range" value="4" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="3700" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="65" />
@@ -34356,7 +34388,7 @@
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="fire" />
 		<attribute key="magiclevelpoints" value="1" />
-		<attribute key="range" value="4" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="3700" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="65" />
@@ -34389,7 +34421,7 @@
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="smallearth" />
 		<attribute key="magiclevelpoints" value="1" />
-		<attribute key="range" value="4" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="3700" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="65" />
@@ -34408,7 +34440,7 @@
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="smallice" />
 		<attribute key="magiclevelpoints" value="1" />
-		<attribute key="range" value="4" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="3700" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="65" />
@@ -34758,7 +34790,7 @@
 		<attribute key="extradef" value="2" />
 		<attribute key="defense" value="35" />
 		<attribute key="weight" value="4500" />
-		<attribute key="imbuementslot" value="1">
+		<attribute key="imbuementslot" value="3">
 			<attribute key="elemental damage" value="3" />
 			<attribute key="life leech" value="3" />
 			<attribute key="mana leech" value="3" />
@@ -35178,7 +35210,7 @@
 		<attribute key="description" value="It can only be wielded properly by players without vocation." />
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="energy" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="1900" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="1" />
@@ -42420,7 +42452,7 @@
 		<attribute key="description" value="It's warm to the touch" />
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="fire" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="1500" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="1" />
@@ -42438,7 +42470,7 @@
 		<attribute key="description" value="It is a little, well, chilly to the touch" />
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="smallice" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="1500" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="1" />
@@ -44444,7 +44476,7 @@
 		<attribute key="primarytype" value="rods" />
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="smallearth" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="2900" />
 		<attribute key="imbuementslot" value="2">
 			<attribute key="life leech" value="3" />
@@ -45520,7 +45552,7 @@
 		<attribute key="shootType" value="energy" />
 		<attribute key="duration" value="86400" />
 		<attribute key="decayTo" value="22764" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="2900" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="65" />
@@ -45540,7 +45572,7 @@
 		<attribute key="magiclevelpoints" value="1" />
 		<attribute key="duration" value="86400" />
 		<attribute key="decayTo" value="22764" />
-		<attribute key="range" value="4" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="2250" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="100" />
@@ -49122,7 +49154,7 @@
 		<attribute key="criticalhitchance" value="1000" />
 		<attribute key="duration" value="900" />
 		<attribute key="decayTo" value="0" />
-		<attribute key="range" value="4" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="3200" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="41" />
@@ -50575,19 +50607,19 @@
 	<item id="26010" article="a" name="plain mayhem rod">
 		<attribute key="primarytype" value="rods" />
 		<attribute key="description" value="This replica looks charged" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="3500" />
 	</item>
 	<item id="26011" article="a" name="valuable mayhem rod">
 		<attribute key="primarytype" value="rods" />
 		<attribute key="description" value="This replica looks heavily charged" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="3500" />
 	</item>
 	<item id="26012" article="an" name="ornate mayhem rod">
 		<attribute key="primarytype" value="rods" />
 		<attribute key="description" value="This replica looks overcharged" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="3500" />
 	</item>
 	<item id="26014" article="a" name="plain remedy blade">
@@ -50851,13 +50883,13 @@
 	<item id="26042" article="a" name="valuable remedy rod">
 		<attribute key="primarytype" value="rods" />
 		<attribute key="description" value="This replica looks heavily charged" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="3500" />
 	</item>
 	<item id="26043" article="an" name="ornate remedy rod">
 		<attribute key="primarytype" value="rods" />
 		<attribute key="description" value="This replica looks overcharged" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="3500" />
 	</item>
 	<item id="26044" article="a" name="plain carving blade">
@@ -51115,19 +51147,19 @@
 	<item id="26071" article="a" name="plain carving rod">
 		<attribute key="primarytype" value="rods" />
 		<attribute key="description" value="This replica looks charged" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="3500" />
 	</item>
 	<item id="26072" article="a" name="valuable carving rod">
 		<attribute key="primarytype" value="rods" />
 		<attribute key="description" value="This replica looks heavily charged" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="3500" />
 	</item>
 	<item id="26073" article="an" name="ornate carving rod">
 		<attribute key="primarytype" value="rods" />
 		<attribute key="description" value="This replica looks overcharged" />
-		<attribute key="range" value="3" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="3500" />
 	</item>
 	<item id="26074" article="a" name="blessed acorn">
@@ -51962,7 +51994,7 @@
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="energy" />
 		<attribute key="magiclevelpoints" value="1" />
-		<attribute key="range" value="4" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="3500" />
 		<attribute key="imbuementslot" value="2">
 			<attribute key="life leech" value="3" />
@@ -51985,7 +52017,7 @@
 		<attribute key="weaponType" value="wand" />
 		<attribute key="shootType" value="smallice" />
 		<attribute key="magiclevelpoints" value="1" />
-		<attribute key="range" value="4" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="3500" />
 		<attribute key="imbuementslot" value="2">
 			<attribute key="life leech" value="3" />
@@ -66143,7 +66175,7 @@
 		<attribute key="shootType" value="smallice" />
 		<attribute key="absorbpercentpoison" value="3" />
 		<attribute key="magiclevelpoints" value="1" />
-		<attribute key="range" value="4" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="3700" />
 		<attribute key="imbuementslot" value="2">
 			<attribute key="mana leech" value="3" />
@@ -67871,7 +67903,7 @@
 		<attribute key="absorbpercentpoison" value="4" />
 		<attribute key="magiclevelpoints" value="2" />
 		<attribute key="healingmagiclevelpoints" value="2" />
-		<attribute key="range" value="4" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="3500" />
 		<attribute key="imbuementslot" value="2">
 			<attribute key="mana leech" value="3" />
@@ -67901,7 +67933,7 @@
 		<attribute key="absorbpercentpoison" value="4" />
 		<attribute key="magiclevelpoints" value="2" />
 		<attribute key="healingmagiclevelpoints" value="2" />
-		<attribute key="range" value="4" />
+		<attribute key="range" value="5" />
 		<attribute key="weight" value="3600" />
 		<attribute key="imbuementslot" value="2">
 			<attribute key="mana leech" value="3" />
@@ -73965,6 +73997,11 @@
 	</item>
 	<item id="40434" name="stairs">
 		<attribute key="floorchange" value="south" />
+	</item>
+	<!--  "gold-brocaded cloth", clientId = 40529 -->
+	<item id="40529" name="gold-brocaded cloth">
+		<attribute key="primarytype" value="creature products" />
+		<attribute key="weight" value="210" />
 	</item>
 	<item id="40530" name="broken macuahuitl">
 		<attribute key="primarytype" value="creature products" />
@@ -84222,6 +84259,15 @@
 			<attribute key="level" value="100" />
 			<attribute key="slot" value="armor" />
 			<attribute key="vocation" value="Monk;true, Exalted Monk" />
+		</attribute>
+		<attribute key="imbuementslot" value="2">
+			<attribute key="life leech" value="3" />
+			<attribute key="elemental protection death" value="3" />
+			<attribute key="elemental protection earth" value="3" />
+			<attribute key="elemental protection fire" value="3" />
+			<attribute key="elemental protection ice" value="3" />
+			<attribute key="elemental protection energy" value="3" />
+			<attribute key="elemental protection holy" value="3" />
 		</attribute>
 	</item>
 	<item id="50264" name="merudri battle mail">

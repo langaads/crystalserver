@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="Tyrn activity near Liberty Bay." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="Tyrn" x="32440" y="32850" z="9"/>
 </raid>

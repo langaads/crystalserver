@@ -6,8 +6,8 @@ combat:setParameter(COMBAT_PARAM_AGGRESSIVE, 0)
 local condition = Condition(CONDITION_ATTRIBUTES)
 condition:setParameter(CONDITION_PARAM_SUBID, 3)
 condition:setParameter(CONDITION_PARAM_BUFF_SPELL, 1)
-condition:setParameter(CONDITION_PARAM_TICKS, 2 * 60 * 1000)
-condition:setParameter(CONDITION_PARAM_STAT_MAGICPOINTS, 1)
+condition:setParameter(CONDITION_PARAM_TICKS, 5 * 60 * 1000)
+condition:setParameter(CONDITION_PARAM_STAT_MAGICPOINTS, 2)
 
 local baseMana = 120
 

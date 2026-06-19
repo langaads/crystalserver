@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="Dire Penguin activity near Svargrond." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="Dire Penguin" x="32136" y="31104" z="2"/>
 	<singlespawn delay="1000" name="Dire Penguin" x="32147" y="31140" z="2"/>

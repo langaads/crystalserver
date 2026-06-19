@@ -57,6 +57,7 @@ local config = {
 	[VOCATION.BASE_ID.DRUID] = "rod",
 	[VOCATION.BASE_ID.PALADIN] = "bow",
 	[VOCATION.BASE_ID.KNIGHT] = "sword",
+	[VOCATION.BASE_ID.MONK] = "fists",
 }
 
 local function greetCallback(npc, creature)

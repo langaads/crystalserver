@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="Walker activity near Oramond." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="Walker" x="33543" y="31924" z="8"/>
 	<singlespawn delay="1000" name="Walker" x="33564" y="31942" z="8"/>

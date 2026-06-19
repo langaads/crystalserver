@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="General Murius activity near Thais." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="General Murius" x="32427" y="31131" z="15"/>
 </raid>

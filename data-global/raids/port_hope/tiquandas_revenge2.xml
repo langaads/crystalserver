@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="Tiquandas Revenge activity near Port Hope." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="Tiquandas Revenge" x="32924" y="32702" z="7" />
 </raid>

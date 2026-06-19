@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="The Ravenger activity near Oramond." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="The Ravenger" x="33418" y="32114" z="10"/>
 </raid>

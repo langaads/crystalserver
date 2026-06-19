@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <raid>
+	<announce delay="1000" type="event" message="Smuggler Baron Silvertoe activity near Port Hope." />
 	<!--Single Spawns-->
 	<singlespawn delay="1000" name="Smuggler Baron Silvertoe" x="32540" y="32647" z="10" />
 </raid>

@@ -42,17 +42,17 @@ local function magicshield(player)
 end
 
 local potions = {
-	[236] = { health = { 250, 350 }, vocations = { VOCATION.BASE_ID.PALADIN, VOCATION.BASE_ID.KNIGHT, VOCATION.BASE_ID.MONK }, level = 50, flask = 283, description = "Only knights, monks and paladins of level 50 or above may drink this fluid." },
+	[236] = { health = { 250, 350 }, level = 50, flask = 283, description = "Only players of level 50 or above may drink this fluid." },
 	[237] = { mana = { 115, 185 }, level = 50, flask = 283, description = "Only players of level 50 or above may drink this fluid." },
-	[238] = { mana = { 150, 250 }, vocations = { VOCATION.BASE_ID.SORCERER, VOCATION.BASE_ID.DRUID, VOCATION.BASE_ID.PALADIN, VOCATION.BASE_ID.MONK }, level = 80, flask = 284, description = "Only sorcerers, druids, monks and paladins of level 80 or above may drink this fluid." },
-	[239] = { health = { 425, 575 }, vocations = { VOCATION.BASE_ID.KNIGHT }, level = 80, flask = 284, description = "Only knights of level 80 or above may drink this fluid." },
+	[238] = { mana = { 150, 250 }, level = 80, flask = 284, description = "Only players of level 80 or above may drink this fluid." },
+	[239] = { health = { 425, 575 }, level = 80, flask = 284, description = "Only players of level 80 or above may drink this fluid." },
 	[266] = { health = { 125, 175 }, flask = 285 },
 	[268] = { mana = { 75, 125 }, flask = 285 },
 	[6558] = { transform = { id = { 236, 237 } }, effect = CONST_ME_DRAWBLOOD },
 	[7439] = { vocations = { VOCATION.BASE_ID.KNIGHT }, condition = berserk, effect = CONST_ME_MAGIC_RED, description = "Only knights may drink this potion.", text = "You feel stronger.", achievement = "Berserker" },
 	[7440] = { vocations = { VOCATION.BASE_ID.SORCERER, VOCATION.BASE_ID.DRUID }, condition = mastermind, effect = CONST_ME_MAGIC_BLUE, description = "Only sorcerers and druids may drink this potion.", text = "You feel smarter.", achievement = "Mastermind" },
 	[7443] = { vocations = { VOCATION.BASE_ID.PALADIN }, condition = bullseye, effect = CONST_ME_MAGIC_GREEN, description = "Only paladins may drink this potion.", text = "You feel more accurate.", achievement = "Sharpshooter" },
-	[7642] = { health = { 250, 350 }, mana = { 100, 200 }, vocations = { VOCATION.BASE_ID.PALADIN, VOCATION.BASE_ID.MONK }, level = 80, flask = 284, description = "Only monks and paladins of level 80 or above may drink this fluid." },
+	[7642] = { health = { 250, 350 }, mana = { 100, 200 }, level = 80, flask = 284, description = "Only players of level 80 or above may drink this fluid." },
 	[7643] = { health = { 650, 850 }, vocations = { VOCATION.BASE_ID.KNIGHT }, level = 130, flask = 284, description = "Only knights of level 130 or above may drink this fluid." },
 	[7644] = { combat = antidote, flask = 285 },
 	[7876] = { health = { 60, 90 }, flask = 285 },
