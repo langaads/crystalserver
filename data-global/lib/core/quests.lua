@@ -6200,7 +6200,7 @@ if not Quests then
 			missions = {
 				[1] = {
 					name = "Troubled Animals",
-					storageId = Storage.Quest.U11_40.ThreatenedDreams.Mission01[1],
+					storageId = Storage.Quest.U11_40.ThreatenedDreams.Mission01.TroubledAnimals,
 					missionId = 10429,
 					startValue = 1,
 					endValue = 16,
@@ -6240,7 +6240,7 @@ if not Quests then
 				},
 				[2] = {
 					name = "Nightmare Intruders",
-					storageId = Storage.Quest.U11_40.ThreatenedDreams.Mission02[1],
+					storageId = Storage.Quest.U11_40.ThreatenedDreams.Mission02.NightmareIntruders,
 					missionId = 10430,
 					startValue = 1,
 					endValue = 8,
@@ -6271,7 +6271,7 @@ if not Quests then
 				},
 				[3] = {
 					name = "An Unlikely Couple",
-					storageId = Storage.Quest.U11_40.ThreatenedDreams.Mission03[1],
+					storageId = Storage.Quest.U11_40.ThreatenedDreams.Mission03.AnUnlikelyCouple,
 					missionId = 10431,
 					startValue = 1,
 					endValue = 4,
@@ -6286,11 +6286,85 @@ if not Quests then
 						You may also ask Aurita for the starlight vial now.",
 					},
 				},
+				[4] = {
+					name = "The Fairy Treasure",
+					storageId = Storage.Quest.U11_40.ThreatenedDreams.Mission04.ToothFairy,
+					missionId = 10432,
+					startValue = 1,
+					endValue = 2,
+					states = {
+						[1] = "The Tooth Fairy asked you to deliver presents to three children who recently lost a milk tooth. \z
+						Visit Quero's daughter's room in Thais, Allen's son's room in Venore and Rowenna's daughter's room in Carlin. \z
+						Place a present on each bed and collect the milk tooth from under the pillow. \z
+						Return to the Tooth Fairy with the three milk teeth.",
+						[2] = "You delivered the presents and collected the milk teeth. \z
+						The Tooth Fairy rewarded you with the first part of an old map. \z
+						Now find the Tired Tree north of the Fields of Glory and ask it for a mission.",
+					},
+				},
+				[5] = {
+					name = "Tired Trees",
+					storageId = Storage.Quest.U11_40.ThreatenedDreams.Mission04.TiredTree,
+					missionId = 10481,
+					startValue = 1,
+					endValue = 2,
+					states = {
+						[1] = "The Tired Tree north of the Fields of Glory asked for a bedtime story about Dryads. \z
+						Find the book 'The Seeds of Life' and recite its name to the tree.",
+						[2] = "You told the Tired Tree the story of 'The Seeds of Life' and received the second part of the old map. \z
+						Now find the Grumpy Stone between Kazordoon and Femor Hills and ask it for a mission.",
+					},
+				},
+				[6] = {
+					name = "Beset Stones",
+					storageId = Storage.Quest.U11_40.ThreatenedDreams.Mission04.GrumpyStone,
+					missionId = 10482,
+					startValue = 1,
+					endValue = 5,
+					states = {
+						[1] = "The Grumpy Stone between Kazordoon and Femor Hills asked you to scratch the backs of its five siblings. \z
+						Use a rake (no metal!) on all five sentient stones around it, then report back.",
+						[2] = "You scratched the backs of all five stones and received the third part of the old map. \z
+						The Grumpy Stone told you the fourth part is hidden in a Big Fly Agaric in the Fields of Glory, \z
+						south of the Tired Tree.",
+						[3] = "You found the fourth map part hidden between the gills of the Big Fly Agaric in the Fields of Glory. \z
+						Use any of the four map parts to combine them into the complete Old Map.",
+						[4] = "You assembled the Old Map. It tells you to search for a stone sun mosaic in the very south of Thais.",
+						[5] = "You discovered the fairy treasure hidden beneath the stones of the sun mosaic: \z
+						a Butterfly Ring, 5 Rainbow Quartz and 5 Ancient Coins.",
+					},
+				},
+				[7] = {
+					name = "Tooth Collection",
+					storageId = Storage.Quest.U11_40.ThreatenedDreams.Mission04.TeethCollection,
+					missionId = 10483,
+					startValue = 1,
+					endValue = 2,
+					states = {
+						[1] = "The Tooth Fairy asked you to complete her collection. Bring her: an Orc Tooth, Shark Teeth, \z
+						Vampire Teeth, a Perfect Behemoth Fang, a Carrion Worm Fang and Werewolf Fangs.",
+						[2] = "You delivered all the teeth for the Tooth Fairy's collection and received \z
+						the Toothfairy Assistant achievement.",
+					},
+				},
+				[8] = {
+					name = "The Swan Feather Cloak",
+					storageId = Storage.Quest.U11_40.ThreatenedDreams.Mission05.SwanFeatherCloak,
+					missionId = 10484,
+					startValue = 1,
+					endValue = 2,
+					states = {
+						[1] = "Valindara agreed to craft a Swan Feather Cloak for you. \z
+						Collect 100 Swan Feathers from the eight spots around Feyrist near the swans \z
+						Once you have them all, return to Valindara.",
+						[2] = "You delivered 100 Swan Feathers to Valindara and received your Swan Feather Cloak.",
+					},
+				},
 			},
 		},
 		[46] = {
 			name = "Blood Brothers",
-			startStorageId = Storage.Quest.U8_4.BloodBrothers.QuestLine,
+			startStorageId = Storage.Quest.U8_4.BloodBrothers.Trust,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
@@ -6300,10 +6374,10 @@ if not Quests then
 					startValue = 1,
 					endValue = 4,
 					states = {
-						[1] = "Think of a way to earn Julius' trust and prove that you are not a vampire. Once you thought of something, talk to him again about your mission.",
+						[1] = "Think of a way to earn Julius' trust and prove that you are not a vampire. Once you have thought of something, talk to him again about your mission.",
 						[2] = "Julius wants more proof. He asked if you have ever baked garlic bread. Confirm whether you know how to bake it.",
-						[3] = "Bake a garlic bread using holy water on flour, then use the dough on garlic, and bake it. Bring it back to Julius and eat it in front of him.",
-						[4] = "You have Julius' trust.",
+						[3] = "Bake a garlic bread by using holy water on flour, then use the dough on garlic, and bake it in an oven. Bring it back to Julius and eat it in front of him.",
+						[4] = "You have earned Julius' trust.",
 					},
 				},
 				[2] = {
@@ -6313,8 +6387,8 @@ if not Quests then
 					startValue = 1,
 					endValue = 2,
 					states = {
-						[1] = "Bake garlic cookies by using the garlic dough on a baking tray before you put it on the oven. Hand out cookies to the citizens and watch their reactions. Report any suspicious people to Julius.",
-						[2] = "You have reported five suspects - probably vampires - to Julius.",
+						[1] = "Bake garlic cookies by using the garlic dough on a baking tray before putting it in the oven. Hand out cookies to the citizens and watch their reactions. Report any suspicious people to Julius.",
+						[2] = "You have reported five suspects — probably vampires — to Julius.",
 					},
 				},
 				[3] = {
@@ -6324,8 +6398,8 @@ if not Quests then
 					startValue = 1,
 					endValue = 3,
 					states = {
-						[1] = "Use the magic words 'alori mort' in front of the suspicious citizens you discovered to hopefully reveal who among them is their leader.",
-						[2] = "You used the spell on the five suspects. Report your findings to Julius.",
+						[1] = "Use the magic words 'alori mort' in front of the five suspicious citizens to reveal who among them is their leader.",
+						[2] = "You used the spell on all five suspects. Report your findings to Julius.",
 						[3] = "You reported the incident with Armenius to Julius.",
 					},
 				},
@@ -6336,12 +6410,12 @@ if not Quests then
 					startValue = 1,
 					endValue = 2,
 					states = {
-						[1] = "Your task is to find someone to bring you to Vengoth. Explore the island and use Julius' map whenever you find an unusual spot to mark it. Mark at least 5 spots including the castle and report back.",
+						[1] = "Find someone to bring you to Vengoth. Explore the island and use Julius' map whenever you find an unusual spot to mark it. Mark at least 5 spots including the castle and report back to Julius.",
 						[2] = "You have successfully mapped Vengoth and reported back to Julius.",
 					},
 				},
 				[5] = {
-					name = "Mission 05: Inside the Castle",
+					name = "Mission 05: Into the Castle",
 					storageId = Storage.Quest.U8_4.BloodBrothers.Mission05,
 					missionId = 10467,
 					startValue = 1,
@@ -6349,18 +6423,19 @@ if not Quests then
 					states = {
 						[1] = "Find a blood crystal somewhere in Yalahar. Ask around to find out where you could get one.",
 						[2] = "Charge the blood crystal by finding someone who has lost something or someone dear to them. Their grief emits powerful energy.",
-						[3] = "Gather three more adventurers with charged blood crystals. Stand together on the symbols around Vengoth castle to attune yourselves and pass the gate.",
-						[4] = "You entered the castle but were blocked by invulnerable ghosts. Search for documents or books inside that reveal the history of the castle and its master.",
+						[3] = "Gather three more adventurers with charged blood crystals. Stand together on the four symbols around Vengoth castle to attune yourselves and unlock the gate. Report back to Julius.",
+						[4] = "You entered the castle but were blocked by invulnerable ghosts. Search for documents and books inside that reveal the history of the castle and its masters.",
 					},
 				},
 				[6] = {
-					name = "Mission 06: A Dark History",
+					name = "Mission 06: A Black History",
 					storageId = Storage.Quest.U8_4.BloodBrothers.Mission06,
 					missionId = 10468,
 					startValue = 1,
-					endValue = 1,
+					endValue = 2,
 					states = {
-						[1] = "Explore the castle further. Look for hidden passages and find the first of the four vampire brothers: Boreth.",
+						[1] = "Explore the castle further. Search for hidden passages and look for documents or books that reveal the dark history of the castle and its masters.",
+						[2] = "You have uncovered the black history of the vampire brothers. Report your findings to Julius and explore deeper to find Boreth, the first of the four brothers.",
 					},
 				},
 				[7] = {
@@ -6368,9 +6443,10 @@ if not Quests then
 					storageId = Storage.Quest.U8_4.BloodBrothers.Mission07,
 					missionId = 10469,
 					startValue = 1,
-					endValue = 1,
+					endValue = 2,
 					states = {
-						[1] = "Defeat Lersatio, the second vampire brother, in another tower of the castle. Bring Julius proof of his death.",
+						[1] = "Find Boreth, the first of the four vampire brothers, hidden somewhere in the castle. Defeat him and bring Julius proof of his death.",
+						[2] = "You have defeated Boreth, the first of the four vampire brothers.",
 					},
 				},
 				[8] = {
@@ -6378,9 +6454,10 @@ if not Quests then
 					storageId = Storage.Quest.U8_4.BloodBrothers.Mission08,
 					missionId = 10470,
 					startValue = 1,
-					endValue = 1,
+					endValue = 2,
 					states = {
-						[1] = "Defeat Marziel, the third vampire brother. Find access to his tower and bring Julius proof of his death.",
+						[1] = "Defeat Lersatio, the second vampire brother. He lurks in another tower of the castle. Use his mirrors to shatter them and lure him out. Bring Julius proof of his death.",
+						[2] = "You have defeated Lersatio, the second vampire brother.",
 					},
 				},
 				[9] = {
@@ -6388,9 +6465,10 @@ if not Quests then
 					storageId = Storage.Quest.U8_4.BloodBrothers.Mission09,
 					missionId = 10471,
 					startValue = 1,
-					endValue = 1,
+					endValue = 2,
 					states = {
-						[1] = "Defeat Arthei, the master vampire and fourth brother. Bring Julius proof of his death to complete your task.",
+						[1] = "Defeat Marziel, the third vampire brother. Find access to his tower. A female character must step onto the throne carrying a vial of blood to awaken him. Bring Julius proof of his death.",
+						[2] = "You have defeated Marziel, the third vampire brother.",
 					},
 				},
 				[10] = {
@@ -6398,9 +6476,10 @@ if not Quests then
 					storageId = Storage.Quest.U8_4.BloodBrothers.Mission10,
 					missionId = 10472,
 					startValue = 1,
-					endValue = 1,
+					endValue = 2,
 					states = {
-						[1] = "You have defeated all four vampire brothers and freed Yalahar from their curse. Julius rewarded you with a special crest.",
+						[1] = "Defeat Arthei, the master vampire brother. Find him in the deepest part of the castle and bring Julius proof of his death.",
+						[2] = "You have defeated all four vampire brothers and freed Yalahar from their curse. Julius rewarded you with a special crest.",
 					},
 				},
 			},
@@ -6571,7 +6650,7 @@ if not Quests then
 				},
 				[14] = {
 					name = "The Order of the Cobra",
-					storageId = Storage.Quest.U12_20.GraveDanger.Cobra,
+					storageId = Storage.Quest.U12_20.GraveDanger.CobraBastion.Access,
 					missionId = 10450,
 					startValue = 1,
 					endValue = 2,
@@ -6698,6 +6777,74 @@ if not Quests then
 			},
 		},
 		[50] = {
+			name = "The Dream Courts",
+			startStorageId = Storage.Quest.U12_00.TheDreamCourts.Main.Questline,
+			startStorageValue = 1,
+			missions = {
+				[1] = {
+					name = "The Dream Courts",
+					storageId = Storage.Quest.U12_00.TheDreamCourts.WardStones.Questline,
+					missionId = 10457,
+					startValue = 1,
+					endValue = 3,
+					states = {
+						[1] = function(player)
+							return string.format("You already got %d/8 energized ward stones.", math.max(player:getStorageValue(Storage.Quest.U12_00.TheDreamCourts.WardStones.Count), 0))
+						end,
+						[2] = "You must kill the Nightmare Beast.",
+						[3] = "By defeating the dreadful Nightmare Beast you did the Winter Court and the Summer Court alike a great favor. From now on, the dream elves will regard you as a friend.",
+					},
+				},
+				[2] = {
+					name = "Unsafe Release",
+					storageId = Storage.Quest.U12_00.TheDreamCourts.UnsafeRelease.Questline,
+					missionId = 10458,
+					startValue = 1,
+					endValue = 3,
+					states = {
+						[1] = "Part I",
+						[2] = "Part II",
+						[3] = "Andre was happy to hear that the compass works as intendend. From now on it is possible that he will charge your compass again. It can be used to give acess to mystical chests once a day.",
+					},
+				},
+				[3] = {
+					name = "Haunted House",
+					storageId = Storage.Quest.U12_00.TheDreamCourts.HauntedHouse.Questline,
+					missionId = 10459,
+					startValue = 1,
+					endValue = 6,
+					states = {
+						[1] = function(player)
+							return string.format(
+								"A tormented soul trusted you with the secret of this house: join the passages to the three dungeons it connects to reveal a hidden portal within!\n\nCellar %d/1\nTemple %d/1\nTomb %d/1",
+								math.max(player:getStorageValue(Storage.Quest.U12_00.TheDreamCourts.HauntedHouse.Cellar), 0),
+								math.max(player:getStorageValue(Storage.Quest.U12_00.TheDreamCourts.HauntedHouse.Temple), 0),
+								math.max(player:getStorageValue(Storage.Quest.U12_00.TheDreamCourts.HauntedHouse.Tomb), 0)
+							)
+						end,
+						[2] = "Part I - burried catedral",
+						[3] = "Part II - puzzle dos livros",
+						[4] = "Part III - bosses",
+						[5] = "Part IV - last stone",
+						[6] = "Activating the ward stone after defeating the Faceless Bane has gained you acess to the deepest mysteries of the dream courts.",
+					},
+				},
+				[4] = {
+					name = "The Seven Keys",
+					storageId = Storage.Quest.U12_00.TheDreamCourts.TheSevenKeys.Questline,
+					missionId = 10460,
+					startValue = 1,
+					endValue = 2,
+					states = {
+						[1] = function(player)
+							return string.format("You already got %d/7 secret keys.", math.max(player:getStorageValue(Storage.Quest.U12_00.TheDreamCourts.TheSevenKeys.Count), 0))
+						end,
+						[2] = "You found the seven keys to unlock the Seven Dream Doors in the Labyrinth of Summer's and Winter's Dreams.",
+					},
+				},
+			},
+		},
+		[51] = {
 			name = "No Rest for the Wicked",
 			startStorageId = Storage.Quest.U14_10.NoRestForTheWicked.Questlog,
 			startStorageValue = 1,
@@ -6705,7 +6852,7 @@ if not Quests then
 				[1] = {
 					name = "With friends like these...",
 					storageId = Storage.Quest.U14_10.NoRestForTheWicked.KillArbaziloth.Questline,
-					missionId = 10457,
+					missionId = 10601,
 					startValue = 1,
 					endValue = 2,
 					states = {
@@ -6716,7 +6863,7 @@ if not Quests then
 				[2] = {
 					name = "The Doomforge",
 					storageId = Storage.Quest.U14_10.NoRestForTheWicked.ForgemasterDoor.Questline,
-					missionId = 10458,
+					missionId = 10602,
 					startValue = 1,
 					endValue = 3,
 					states = {
@@ -6727,7 +6874,7 @@ if not Quests then
 				},
 			},
 		},
-		[51] = {
+		[52] = {
 			name = "The Way of the Monk",
 			startStorageId = Storage.Quest.U15_00.TheWayOfTheMonk.Questlog,
 			startStorageValue = 1,
@@ -6867,7 +7014,7 @@ if not Quests then
 				},
 			},
 		},
-		[52] = {
+		[53] = {
 			name = "Bloody Tusks Quest",
 			startStorageId = Storage.Quest.U15_10.BloodyTusks.Questline,
 			startStorageValue = 1,
@@ -6919,6 +7066,104 @@ if not Quests then
 					startValue = 1,
 					endValue = 2,
 					description = "To fool the magic wards of the fortress, you must first befoul yourself. Gain entrance to the bloodbath and let the Norcferatu's tainted blood seep into your flesh.",
+				},
+			},
+		},
+		[54] = {
+			name = "The Order of the Lion",
+			startStorageId = Storage.Quest.U12_40.TheOrderOfTheLion.Evrard,
+			startStorageValue = 1,
+			missions = {
+				[1] = {
+					name = "Mission 01: Infiltrating the Camp",
+					storageId = Storage.Quest.U12_40.TheOrderOfTheLion.Evrard,
+					missionId = 10473,
+					startValue = 1,
+					endValue = 3,
+					states = {
+						[1] = "Evrard the Miller asked you to sneak into the usurper camp to the east and retrieve a ledger from the harbour warehouse and a map from somewhere in the camp. Be quiet and avoid being seen.",
+						[2] = "You have retrieved both the ledger and the map. Report back to Evrard the Miller.",
+						[3] = "Evrard rewarded you with access to an underground route into the city and a passphrase: YSELDA. Use it with the citizens of Bounac to earn their trust.",
+					},
+				},
+				[2] = {
+					name = "Gaining the Trust of Bounac Residents",
+					storageId = Storage.Quest.U12_40.TheOrderOfTheLion.BounacTrust,
+					missionId = 10474,
+					startValue = 1,
+					endValue = 5,
+					states = {
+						[1] = "You have earned the trust of 1 citizen of Bounac. Use the passphrase YSELDA with the other residents to earn their trust as well.",
+						[2] = "You have earned the trust of 2 citizens of Bounac. Use the passphrase YSELDA with the other residents to earn their trust as well.",
+						[3] = "You have earned the trust of 3 citizens of Bounac. Use the passphrase YSELDA with the other residents to earn their trust as well.",
+						[4] = "You have earned the trust of 4 citizens of Bounac. Use the passphrase YSELDA with the other residents to earn their trust as well.",
+						[5] = "You have earned the trust of all the citizens of Bounac. The Bounac Guard may now allow you to enter the Castle. Just ask him to 'pass'.",
+					},
+				},
+				[3] = {
+					name = "Mission: Tasks of Trust",
+					storageId = Storage.Quest.U12_40.TheOrderOfTheLion.WesTask,
+					missionId = 10475,
+					startValue = 1,
+					endValue = 2,
+					states = {
+						[1] = "Wes the Blacksmith needs materials to forge better equipment. Bring him 20 broken longbows from fallen usurpers.",
+						[2] = "You have earned Wes the Blacksmith's trust by delivering the broken longbows.",
+					},
+				},
+				[4] = {
+					name = "Mission: The Baker's Request",
+					storageId = Storage.Quest.U12_40.TheOrderOfTheLion.JehanTask,
+					missionId = 10476,
+					startValue = 1,
+					endValue = 1,
+					states = {
+						[1] = "You delivered 10 loaves of bread to Jehan the Baker and earned his trust.",
+					},
+				},
+				[5] = {
+					name = "Mission: Purify the Crypt",
+					storageId = Storage.Quest.U12_40.TheOrderOfTheLion.OnfroiKills,
+					missionId = 10477,
+					startValue = 0,
+					endValue = 20,
+					description = function(player)
+						return string.format("You already destroyed %d/20 crypt warriors.", (math.max(player:getStorageValue(Storage.Quest.U12_40.TheOrderOfTheLion.OnfroiKills), 0)))
+					end,
+				},
+				[6] = {
+					name = "Mission: The Hunt for Dal",
+					storageId = Storage.Quest.U12_40.TheOrderOfTheLion.DalKills,
+					missionId = 10478,
+					startValue = 0,
+					endValue = 20,
+					description = function(player)
+						return string.format("You already hunted %d/20 deer.", (math.max(player:getStorageValue(Storage.Quest.U12_40.TheOrderOfTheLion.DalKills), 0)))
+					end,
+				},
+				[7] = {
+					name = "Mission: Provisions for the Butcher",
+					storageId = Storage.Quest.U12_40.TheOrderOfTheLion.FralTask,
+					missionId = 10479,
+					startValue = 1,
+					endValue = 1,
+					states = {
+						[1] = "You delivered 20 chunks of raw ham to Fral the Butcher and earned his trust.",
+					},
+				},
+				[8] = {
+					name = "Mission 02: The Siege of Bounac",
+					storageId = Storage.Quest.U12_40.TheOrderOfTheLion.KesarMission,
+					missionId = 10480,
+					startValue = 1,
+					endValue = 5,
+					states = {
+						[1] = "Kesar the Younger has asked you to wait while he attends to other matters. Return to him after some time and ask him about the siege again.",
+						[2] = "You have agreed to Kesar's plan. Wait for one Tibian day and then return to his chambers during the night. Stay alert — enemies may appear.",
+						[3] = "You have defeated Fugue. Speak with Kesar the Younger during the day. He may ask you to investigate other knightly orders before proceeding.",
+						[4] = "Join up to 4 other adventurers at the battlefield on the eastern coast of Bounac. Defeat the Usurper Commanders, then face Drume himself.",
+						[5] = "You have defeated Drume and his forces. Report back to Kesar the Younger to receive your reward.",
+					},
 				},
 			},
 		},

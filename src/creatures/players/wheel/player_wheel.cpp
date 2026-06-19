@@ -895,6 +895,113 @@ uint16_t PlayerWheel::getUnusedPoints() const {
 	return totalPoints;
 }
 
+void PlayerWheel::reclaimExcessPoints() {
+	if (!canOpenWheel()) {
+		return;
+	}
+
+	auto getTotalUsedPoints = [this]() -> uint16_t {
+		uint16_t used = 0;
+		for (auto slot : magic_enum::enum_values<WheelSlots_t>()) {
+			used += getPointsBySlotType(slot);
+		}
+		return used;
+	};
+
+	const auto getTotalAvailablePoints = [this]() -> uint16_t {
+		return static_cast<uint16_t>(getWheelPoints() + m_modsMaxGrade);
+	};
+
+	bool changed = false;
+
+	for (auto slot : magic_enum::enum_values<WheelSlots_t>()) {
+		const auto points = getPointsBySlotType(slot);
+		if (points > 0 && !canPlayerSelectPointOnSlot(slot, false)) {
+			setPointsBySlotType(static_cast<uint8_t>(slot), 0);
+			changed = true;
+		}
+	}
+
+	uint16_t excess = 0;
+	const uint16_t totalUsed = getTotalUsedPoints();
+	const uint16_t totalAvailable = getTotalAvailablePoints();
+	if (totalUsed > totalAvailable) {
+		excess = totalUsed - totalAvailable;
+	}
+
+	if (excess == 0 && !changed) {
+		return;
+	}
+
+	if (excess > 0) {
+		while (excess > 0) {
+			WheelSlots_t targetSlot {};
+			int8_t bestOrder = -1;
+			bool bestIsPartial = false;
+			uint16_t bestPoints = 0;
+			bool found = false;
+
+			for (auto slot : magic_enum::enum_values<WheelSlots_t>()) {
+				const auto points = getPointsBySlotType(slot);
+				if (points == 0) {
+					continue;
+				}
+
+				const auto order = g_game().getIOWheel()->getSlotPrioritaryOrder(slot);
+				if (order < 0) {
+					continue;
+				}
+
+				const bool isPartial = points < getMaxPointsPerSlot(slot);
+
+				auto isBetter = !found;
+				if (!isBetter && order != bestOrder) {
+					isBetter = order > bestOrder;
+				} else if (!isBetter && order == bestOrder) {
+					if (isPartial != bestIsPartial) {
+						isBetter = isPartial > bestIsPartial;
+					} else if (points != bestPoints) {
+						isBetter = points > bestPoints;
+					}
+				}
+
+				if (isBetter) {
+					found = true;
+					targetSlot = slot;
+					bestOrder = order;
+					bestIsPartial = isPartial;
+					bestPoints = points;
+				}
+			}
+
+			if (!found) {
+				break;
+			}
+
+			const auto points = getPointsBySlotType(targetSlot);
+			const auto toRemove = std::min<uint16_t>(excess, points);
+			setPointsBySlotType(static_cast<uint8_t>(targetSlot), points - toRemove);
+			excess -= toRemove;
+			changed = true;
+		}
+	}
+
+	for (auto slot : magic_enum::enum_values<WheelSlots_t>()) {
+		const auto points = getPointsBySlotType(slot);
+		if (points > 0 && !canPlayerSelectPointOnSlot(slot, false)) {
+			setPointsBySlotType(static_cast<uint8_t>(slot), 0);
+			changed = true;
+		}
+	}
+
+	if (!changed) {
+		return;
+	}
+
+	loadPlayerBonusData();
+	saveDBPlayerSlotPointsOnLogout();
+}
+
 bool PlayerWheel::getSpellAdditionalArea(const std::string &spellName) const {
 	const auto stage = static_cast<uint8_t>(getSpellUpgrade(spellName));
 	if (stage == 0) {
@@ -1164,9 +1271,9 @@ PlayerWheelGem &PlayerWheel::getGem(const std::string &uuid) {
 }
 
 uint16_t PlayerWheel::getGemIndex(const std::string &uuid) const {
-	for (uint16_t i = 0; i < m_revealedGems.size(); ++i) {
+	for (size_t i = 0; i < m_revealedGems.size(); ++i) {
 		if (m_revealedGems[i].uuid == uuid) {
-			return i;
+			return static_cast<uint16_t>(i);
 		}
 	}
 	g_logger().error("[{}] Failed to find gem with uuid {}", __FUNCTION__, uuid);
@@ -1370,7 +1477,7 @@ void PlayerWheel::addGems(NetworkMessage &msg) const {
 }
 
 void PlayerWheel::addGradeModifiers(NetworkMessage &msg) const {
-	msg.addByte(0x2E); // Modifiers for all Vocations
+	msg.addByte(46); // Modifiers for all Vocations
 
 	for (const auto &modPosition : modsBasicPosition) {
 		const auto pos = static_cast<uint8_t>(modPosition);
@@ -1378,7 +1485,7 @@ void PlayerWheel::addGradeModifiers(NetworkMessage &msg) const {
 		msg.addByte(m_basicGrades[pos]);
 	}
 
-	msg.addByte(0x17); // Modifiers for specific per Vocations
+	msg.addByte(23); // Modifiers for specific per Vocations
 
 	const auto vocationBaseId = m_player.getVocation()->getBaseId();
 	const auto modsSupremeIt = modsSupremePositionByVocation.find(vocationBaseId);
@@ -1504,6 +1611,7 @@ void PlayerWheel::sendOpenWheelWindow(NetworkMessage &msg, uint32_t ownerId) {
 	}
 	addPromotionScrolls(msg);
 	msg.addByte(hasMonkQuest() ? 10 : 0); // The Way of The Monk Quest
+	msg.add<uint16_t>(getExtraPointsFromHuntingTaskShop());
 	addGems(msg);
 	addGradeModifiers(msg);
 
@@ -1786,6 +1894,28 @@ void PlayerWheel::saveKVScrolls() const {
 	}
 }
 
+void PlayerWheel::loadKVHuntingTaskShopExtraPoints() {
+	const auto &pointsKv = m_player.kv()->scoped("wheel-of-destiny");
+	if (!pointsKv) {
+		return;
+	}
+
+	const auto value = pointsKv->get("hunting-task-shop-extra-points");
+	if (value && value.has_value()) {
+		auto extraPoints = value->getNumber();
+		m_extraPointsFromHuntingTaskShop = extraPoints > 0 ? static_cast<uint16_t>(extraPoints) : 0;
+	}
+}
+
+void PlayerWheel::saveKVHuntingTaskShopExtraPoints() const {
+	const auto &pointsKv = m_player.kv()->scoped("wheel-of-destiny");
+	if (!pointsKv) {
+		return;
+	}
+
+	pointsKv->set("hunting-task-shop-extra-points", m_extraPointsFromHuntingTaskShop);
+}
+
 void PlayerWheel::loadKVModGrades() {
 	for (const auto &modPosition : modsBasicPosition) {
 		const auto pos = static_cast<uint8_t>(modPosition);
@@ -1914,6 +2044,8 @@ uint16_t PlayerWheel::getExtraPoints() const {
 	if (const auto promotionPointsKV = m_player.kv()->scoped("wheel-of-destiny")->get("extra-points"); promotionPointsKV.has_value()) {
 		totalBonus += std::max<int32_t>(0, promotionPointsKV->get<IntType>());
 	}
+	
+	totalBonus += getExtraPointsFromHuntingTaskShop();
 
 	return static_cast<uint16_t>(std::min<int32_t>(totalBonus, 0xFFFF));
 }
@@ -1951,14 +2083,30 @@ bool PlayerWheel::removePromotionPoints(uint16_t points) {
 	return true;
 }
 
+uint16_t PlayerWheel::getExtraPointsFromHuntingTaskShop() const {
+	if (m_player.getLevel() < 51) {
+		return 0;
+	}
+
+	return m_extraPointsFromHuntingTaskShop;
+}
+
+void PlayerWheel::addExtraPointsFromHuntingTaskShop(uint16_t amount) {
+	if (amount == 0) {
+		return;
+	}
+
+	const uint32_t total = static_cast<uint32_t>(m_extraPointsFromHuntingTaskShop) + amount;
+	m_extraPointsFromHuntingTaskShop = static_cast<uint16_t>(std::min<uint32_t>(total, std::numeric_limits<uint16_t>::max()));
+}
+
 uint16_t PlayerWheel::getWheelPoints(bool includeExtraPoints /* = true*/) const {
 	const uint32_t level = m_player.getLevel();
 	const uint32_t minLevelToStartCountPoints = std::max<uint32_t>(1, m_minLevelToOpen) - 1;
 	auto totalPoints = std::max(0u, (level - minLevelToStartCountPoints)) * m_pointsPerLevel;
 
 	if (includeExtraPoints) {
-		const auto extraPoints = getExtraPoints();
-		totalPoints += extraPoints;
+		totalPoints += getExtraPoints();
 	}
 
 	return totalPoints;
@@ -4112,13 +4260,18 @@ PlayerWheelGem PlayerWheelGem::deserialize(const std::string &uuid, const ValueW
 }
 
 bool PlayerWheel::hasMonkQuest() const {
-	const auto &kvScoped = m_player.kv()->scoped("the_way_of_the_monk_quest");
+	const auto &kvScoped = m_player.kv()->scoped("quests")->scoped("the_way_of_the_monk_quest");
 	if (!kvScoped) {
 		return false;
 	}
 
 	const auto boolPointsWheel = kvScoped->get("boolPointsWheel");
-	return boolPointsWheel ? boolPointsWheel->get<bool>() : false;
+	if (boolPointsWheel && boolPointsWheel->get<bool>()) {
+		return true;
+	}
+
+	const auto questline = kvScoped->get("questline");
+	return questline && questline->getNumber() >= 4;
 }
 
 int32_t PlayerWheel::checkRevelationPerkAscetic() const {

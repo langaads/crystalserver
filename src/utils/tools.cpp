@@ -229,7 +229,8 @@ std::string generateToken(const std::string &key, uint32_t ticks) {
 
 	// hmac key pad generation
 	std::string iKeyPad(64, 0x36), oKeyPad(64, 0x5C);
-	for (uint8_t i = 0; i < key.length(); ++i) {
+	const std::string::size_type keyPadLimit = std::min(key.length(), iKeyPad.length());
+	for (std::string::size_type i = 0; i < keyPadLimit; ++i) {
 		iKeyPad[i] ^= key[i];
 		oKeyPad[i] ^= key[i];
 	}
@@ -243,7 +244,7 @@ std::string generateToken(const std::string &key, uint32_t ticks) {
 	message.assign(transformToSHA1(iKeyPad));
 
 	// hmac concat outer pad with message, conversion from hex to int needed
-	for (uint8_t i = 0; i < message.length(); i += 2) {
+	for (std::string::size_type i = 0; i < message.length(); i += 2) {
 		oKeyPad.push_back(static_cast<char>(std::stol(message.substr(i, 2), nullptr, 16)));
 	}
 
@@ -487,6 +488,48 @@ std::string formatDateShort(time_t time) {
 
 std::string formatTime(time_t time) {
 	return formatTimeString(time, "%H:%M:%S");
+}
+
+std::string formatTimeUntilReset(uint32_t now, uint32_t targetTimestamp) {
+	if (targetTimestamp <= now) {
+		return "0d 0h 0m";
+	}
+
+	uint32_t remainingSeconds = targetTimestamp - now;
+	const uint32_t days = remainingSeconds / 86400;
+	remainingSeconds %= 86400;
+	const uint32_t hours = remainingSeconds / 3600;
+	remainingSeconds %= 3600;
+	const uint32_t minutes = remainingSeconds / 60;
+
+	return fmt::format("{} days {} hours {} minutes", days, hours, minutes);
+}
+
+int parseDayOfWeek(const std::string &dayStr) {
+	const std::string day = asLowerCaseString(dayStr);
+	if (day == "sunday") {
+		return 0;
+	}
+	if (day == "monday") {
+		return 1;
+	}
+	if (day == "tuesday") {
+		return 2;
+	}
+	if (day == "wednesday") {
+		return 3;
+	}
+	if (day == "thursday") {
+		return 4;
+	}
+	if (day == "friday") {
+		return 5;
+	}
+	if (day == "saturday") {
+		return 6;
+	}
+	g_logger().warn("Invalid weekly day '{}', defaulting to monday", dayStr);
+	return 1;
 }
 
 std::string formatEnumName(std::string_view name) {
